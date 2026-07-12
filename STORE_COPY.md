@@ -181,17 +181,16 @@ Single Besties
 
 ---
 
-## 6. Welcome / First Order Email
-Use as a welcome email for new subscribers, with a first order discount code.
-Create the code in Shopify under Discounts, then drop it in below.
+## 6. Welcome Email
+Use as a welcome email for new subscribers.
 
 **Subject line options**
-- Welcome to the besties. Here is a treat.
-- You are one of us now. Enjoy 15 percent off.
-- Hi bestie, your first order is on us a little
+- Welcome to the besties
+- You are one of us now
+- Hi bestie, we are so glad you are here
 
 **Preview text**
-A little welcome gift for your first Single Besties order.
+Welcome to the Single Besties family.
 
 **Body**
 
@@ -199,10 +198,9 @@ Hi bestie,
 
 Welcome to Single Besties. We are so happy you are here.
 
-Consider this your official invite to the group chat. As a thank you for joining,
-here is 15 percent off your first order.
-
-Use code WELCOME15 at checkout.
+Consider this your official invite to the group chat. We are all about celebrating
+your main character energy, your solo dates, and your best self, and we made this
+brand for exactly that.
 
 A few things to know before you shop:
 - Every order ships within 7 to 14 business days, with tracking sent by email
@@ -229,4 +227,3 @@ Single Besties
 - Route contact form and notifications: Settings > Store details > Contact/Sender email to jesse@straughterco.com
 - Official Shipping Policy legal page: Settings > Policies > Shipping policy (paste section 1 above)
 - Refund/Returns legal page (final sale): Settings > Policies > Refund policy (paste section 5 above)
-- Create the WELCOME15 discount code: Discounts > Create discount (for the welcome email in section 6)
