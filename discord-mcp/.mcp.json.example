@@ -4,7 +4,8 @@
       "command": "node",
       "args": ["discord-mcp/dist/index.js"],
       "env": {
-        "DISCORD_BOT_TOKEN": "${DISCORD_BOT_TOKEN}"
+        "DISCORD_BOT_TOKEN": "${DISCORD_BOT_TOKEN}",
+        "DISCORD_GUILD_ID": "1488629688376234104"
       }
     }
   }

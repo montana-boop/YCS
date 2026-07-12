@@ -17,6 +17,21 @@ this repo — the skill documents the workflow, this connector provides the tool
 | Roles | `discord_list_roles`, `discord_create_role`, `discord_update_role`, `discord_delete_role` |
 | Members | `discord_list_members`, `discord_get_member`, `discord_add_member_role`, `discord_remove_member_role` |
 
+## Target server
+
+This connector is configured for a specific Discord server:
+
+| | ID |
+|---|---|
+| Guild (server) | `1488629688376234104` |
+| Primary channel | `1488629688376234106` |
+
+Set `DISCORD_GUILD_ID=1488629688376234104` and guild-scoped tools
+(`discord_list_channels`, `discord_list_roles`, `discord_list_members`, role and
+member operations, …) default to this server — you can omit `guild_id` on every
+call. Passing an explicit `guild_id` still overrides the default, so the same
+build works against other servers too. The `.mcp.json.example` already sets it.
+
 ## Prerequisites
 
 1. A **Discord application + bot** — create one at
@@ -80,6 +95,7 @@ The remote entry point (`dist/http.js`) serves MCP over HTTP at `/mcp` and
 |---------|---------|
 | `DISCORD_BOT_TOKEN` | Discord bot token used for API calls. |
 | `MCP_AUTH_TOKEN` | Bearer token every client must present. The server refuses to start without it — an unauthenticated endpoint would let anyone act on your Discord server. |
+| `DISCORD_GUILD_ID` | Optional default guild (`1488629688376234104` for this server) so `guild_id` can be omitted on tool calls. |
 | `PORT` | Listen port (optional, default `3000`; most hosts inject their own). |
 
 Run it locally:

@@ -59,6 +59,24 @@ async function discord(method: Method, path: string, body?: unknown): Promise<un
 const snowflake = (label: string) =>
   z.string().regex(/^\d{17,20}$/, `${label} must be a Discord snowflake ID`);
 
+const optionalSnowflake = (label: string) => snowflake(label).optional();
+
+/**
+ * Resolve the guild to act on: an explicit guild_id argument takes precedence,
+ * otherwise fall back to the DISCORD_GUILD_ID environment default. Throws if
+ * neither is available.
+ */
+function resolveGuild(guildId?: string): string {
+  const resolved = guildId ?? process.env.DISCORD_GUILD_ID;
+  if (!resolved) {
+    throw new Error(
+      "No guild_id provided and DISCORD_GUILD_ID environment default is not set. " +
+        "Pass guild_id explicitly or configure DISCORD_GUILD_ID.",
+    );
+  }
+  return resolved;
+}
+
 /**
  * Build a fully configured MCP server instance with all Discord tools
  * registered. A fresh instance is created per stdio process and per HTTP
@@ -114,10 +132,11 @@ export function createServer(): McpServer {
     "discord_get_guild",
     {
       title: "Get guild",
-      description: "Get details about a guild (server) by its ID.",
-      inputSchema: { guild_id: snowflake("guild_id") },
+      description:
+        "Get details about a guild (server). Defaults to DISCORD_GUILD_ID if guild_id is omitted.",
+      inputSchema: { guild_id: optionalSnowflake("guild_id") },
     },
-    ({ guild_id }) => discord("GET", `/guilds/${guild_id}`),
+    ({ guild_id }) => discord("GET", `/guilds/${resolveGuild(guild_id)}`),
   );
 
   // -------------------------------------------------------------------------
@@ -128,10 +147,11 @@ export function createServer(): McpServer {
     "discord_list_channels",
     {
       title: "List channels",
-      description: "List all channels in a guild.",
-      inputSchema: { guild_id: snowflake("guild_id") },
+      description:
+        "List all channels in a guild. Defaults to DISCORD_GUILD_ID if guild_id is omitted.",
+      inputSchema: { guild_id: optionalSnowflake("guild_id") },
     },
-    ({ guild_id }) => discord("GET", `/guilds/${guild_id}/channels`),
+    ({ guild_id }) => discord("GET", `/guilds/${resolveGuild(guild_id)}/channels`),
   );
 
   tool(
@@ -151,7 +171,7 @@ export function createServer(): McpServer {
       description:
         "Create a channel in a guild. type: 0=text, 2=voice, 4=category, 5=announcement, 13=stage, 15=forum.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         name: z.string().min(1).max(100),
         type: z.number().int().optional(),
         topic: z.string().max(1024).optional(),
@@ -162,7 +182,7 @@ export function createServer(): McpServer {
         bitrate: z.number().int().optional(),
       },
     },
-    ({ guild_id, ...body }) => discord("POST", `/guilds/${guild_id}/channels`, body),
+    ({ guild_id, ...body }) => discord("POST", `/guilds/${resolveGuild(guild_id)}/channels`, body),
   );
 
   tool(
@@ -274,10 +294,10 @@ export function createServer(): McpServer {
     "discord_list_roles",
     {
       title: "List roles",
-      description: "List all roles in a guild.",
-      inputSchema: { guild_id: snowflake("guild_id") },
+      description: "List all roles in a guild. Defaults to DISCORD_GUILD_ID if guild_id is omitted.",
+      inputSchema: { guild_id: optionalSnowflake("guild_id") },
     },
-    ({ guild_id }) => discord("GET", `/guilds/${guild_id}/roles`),
+    ({ guild_id }) => discord("GET", `/guilds/${resolveGuild(guild_id)}/roles`),
   );
 
   tool(
@@ -287,7 +307,7 @@ export function createServer(): McpServer {
       description:
         "Create a role in a guild. permissions is a bitwise permission string; color is an integer RGB value.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         name: z.string().min(1).max(100),
         permissions: z.string().optional(),
         color: z.number().int().optional(),
@@ -295,7 +315,7 @@ export function createServer(): McpServer {
         mentionable: z.boolean().optional(),
       },
     },
-    ({ guild_id, ...body }) => discord("POST", `/guilds/${guild_id}/roles`, body),
+    ({ guild_id, ...body }) => discord("POST", `/guilds/${resolveGuild(guild_id)}/roles`, body),
   );
 
   tool(
@@ -304,7 +324,7 @@ export function createServer(): McpServer {
       title: "Update role",
       description: "Modify a role's properties. Only the fields you provide are changed.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         role_id: snowflake("role_id"),
         name: z.string().min(1).max(100).optional(),
         permissions: z.string().optional(),
@@ -314,7 +334,7 @@ export function createServer(): McpServer {
       },
     },
     ({ guild_id, role_id, ...body }) =>
-      discord("PATCH", `/guilds/${guild_id}/roles/${role_id}`, body),
+      discord("PATCH", `/guilds/${resolveGuild(guild_id)}/roles/${role_id}`, body),
   );
 
   tool(
@@ -322,9 +342,9 @@ export function createServer(): McpServer {
     {
       title: "Delete role",
       description: "Permanently delete a role from a guild.",
-      inputSchema: { guild_id: snowflake("guild_id"), role_id: snowflake("role_id") },
+      inputSchema: { guild_id: optionalSnowflake("guild_id"), role_id: snowflake("role_id") },
     },
-    ({ guild_id, role_id }) => discord("DELETE", `/guilds/${guild_id}/roles/${role_id}`),
+    ({ guild_id, role_id }) => discord("DELETE", `/guilds/${resolveGuild(guild_id)}/roles/${role_id}`),
   );
 
   // -------------------------------------------------------------------------
@@ -338,52 +358,52 @@ export function createServer(): McpServer {
       description:
         "List members of a guild. Requires the bot to have the GUILD_MEMBERS privileged intent enabled.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         limit: z.number().int().min(1).max(1000).optional(),
       },
     },
     ({ guild_id, limit }) =>
-      discord("GET", `/guilds/${guild_id}/members${limit ? `?limit=${limit}` : ""}`),
+      discord("GET", `/guilds/${resolveGuild(guild_id)}/members${limit ? `?limit=${limit}` : ""}`),
   );
 
   tool(
     "discord_get_member",
     {
       title: "Get member",
-      description: "Get a single guild member by guild and user ID.",
-      inputSchema: { guild_id: snowflake("guild_id"), user_id: snowflake("user_id") },
+      description: "Get a single guild member by user ID. Defaults to DISCORD_GUILD_ID.",
+      inputSchema: { guild_id: optionalSnowflake("guild_id"), user_id: snowflake("user_id") },
     },
-    ({ guild_id, user_id }) => discord("GET", `/guilds/${guild_id}/members/${user_id}`),
+    ({ guild_id, user_id }) => discord("GET", `/guilds/${resolveGuild(guild_id)}/members/${user_id}`),
   );
 
   tool(
     "discord_add_member_role",
     {
       title: "Add role to member",
-      description: "Assign a role to a guild member.",
+      description: "Assign a role to a guild member. Defaults to DISCORD_GUILD_ID.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         user_id: snowflake("user_id"),
         role_id: snowflake("role_id"),
       },
     },
     ({ guild_id, user_id, role_id }) =>
-      discord("PUT", `/guilds/${guild_id}/members/${user_id}/roles/${role_id}`),
+      discord("PUT", `/guilds/${resolveGuild(guild_id)}/members/${user_id}/roles/${role_id}`),
   );
 
   tool(
     "discord_remove_member_role",
     {
       title: "Remove role from member",
-      description: "Remove a role from a guild member.",
+      description: "Remove a role from a guild member. Defaults to DISCORD_GUILD_ID.",
       inputSchema: {
-        guild_id: snowflake("guild_id"),
+        guild_id: optionalSnowflake("guild_id"),
         user_id: snowflake("user_id"),
         role_id: snowflake("role_id"),
       },
     },
     ({ guild_id, user_id, role_id }) =>
-      discord("DELETE", `/guilds/${guild_id}/members/${user_id}/roles/${role_id}`),
+      discord("DELETE", `/guilds/${resolveGuild(guild_id)}/members/${user_id}/roles/${role_id}`),
   );
 
   return server;
