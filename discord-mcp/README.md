@@ -30,6 +30,16 @@ this repo — the skill documents the workflow, this connector provides the tool
 
 Node.js 18+ is required (the server uses the built-in `fetch`).
 
+## Two ways to run
+
+This connector ships both transports from the same tool definitions:
+
+- **Local (stdio)** — `dist/index.js`. Runs as a child process of the MCP
+  client. No network, no URL. Simplest and most private.
+- **Remote (HTTP)** — `dist/http.js`. A [Streamable HTTP](https://modelcontextprotocol.io/docs/concepts/transports)
+  server you deploy somewhere; clients connect to `https://<host>/mcp` with a
+  bearer token. Use this when you want a hosted endpoint multiple clients can share.
+
 ## Build
 
 ```bash
@@ -38,9 +48,9 @@ npm install
 npm run build
 ```
 
-This produces `dist/index.js`, the executable server entry point.
+This produces `dist/index.js` (stdio) and `dist/http.js` (remote HTTP).
 
-## Register with Claude Code
+## Register with Claude Code — local (stdio)
 
 Point Claude Code at the built server and pass the token via the environment.
 Either add it from the CLI:
@@ -61,9 +71,63 @@ export DISCORD_BOT_TOKEN=your-bot-token-here # or set it in your environment
 `.mcp.json.example` uses `${DISCORD_BOT_TOKEN}`, which Claude Code expands from
 your environment at launch, so the token never lives in the committed file.
 
+## Run as a remote (HTTP) server
+
+The remote entry point (`dist/http.js`) serves MCP over HTTP at `/mcp` and
+**requires** two secrets:
+
+| Env var | Purpose |
+|---------|---------|
+| `DISCORD_BOT_TOKEN` | Discord bot token used for API calls. |
+| `MCP_AUTH_TOKEN` | Bearer token every client must present. The server refuses to start without it — an unauthenticated endpoint would let anyone act on your Discord server. |
+| `PORT` | Listen port (optional, default `3000`; most hosts inject their own). |
+
+Run it locally:
+
+```bash
+DISCORD_BOT_TOKEN=your-bot-token \
+MCP_AUTH_TOKEN=$(openssl rand -hex 32) \
+npm run start:http
+# → discord-mcp remote server listening on http://0.0.0.0:3000/mcp
+```
+
+There is also an unauthenticated `GET /health` endpoint for uptime checks.
+
+### Deploy with Docker
+
+A multi-stage `Dockerfile` is included; the image is host-agnostic and runs on
+any container platform (Fly.io, Render, Railway, Cloud Run, a VPS, …):
+
+```bash
+docker build -t discord-mcp .
+docker run -p 3000:3000 \
+  -e DISCORD_BOT_TOKEN=your-bot-token \
+  -e MCP_AUTH_TOKEN=your-strong-secret \
+  discord-mcp
+```
+
+Set `DISCORD_BOT_TOKEN` and `MCP_AUTH_TOKEN` as secrets in your host's
+dashboard, deploy, and your endpoint is `https://<your-host>/mcp`. **The URL
+only exists once you've deployed** — it is whatever hostname your platform
+assigns; this repo does not host it for you. Terminate TLS at your platform's
+load balancer (don't serve the bearer token over plain HTTP).
+
+### Register the remote server with Claude Code
+
+```bash
+claude mcp add --transport http discord https://your-host.example.com/mcp \
+  --header "Authorization: Bearer your-MCP_AUTH_TOKEN"
+```
+
+…or copy `.mcp.remote.json.example` to `.mcp.json` and set `MCP_AUTH_TOKEN` in
+your environment (the example expands `${MCP_AUTH_TOKEN}` at launch, keeping the
+secret out of the committed file).
+
 ## Notes
 
-- **Transport:** stdio. `stdout` carries the JSON-RPC stream; logs go to `stderr`.
+- **Transports:** stdio (`dist/index.js`) and Streamable HTTP (`dist/http.js`),
+  both built from the same tool definitions in `src/server.ts`. On stdio,
+  `stdout` carries the JSON-RPC stream and logs go to `stderr`.
 - **Auth:** the token is read from `DISCORD_BOT_TOKEN` on each request and never
   logged.
 - **Destructive tools:** `discord_delete_channel`, `discord_delete_role`, and
