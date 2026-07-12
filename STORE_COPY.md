@@ -110,6 +110,10 @@ Your order is confirmed and our team is getting it ready. Please allow 7 to 14
 business days for your order to be processed and shipped. As soon as it is on its
 way, we will send you a shipping confirmation with tracking.
 
+A quick note: all sales are final, so please double check your size and details.
+If your order arrives damaged or you received the wrong item, email us at
+jesse@straughterco.com within 7 days of delivery and we will make it right.
+
 You will find your full order details below.
 
 Need to make a change or have a question? Email us at jesse@straughterco.com with
@@ -147,12 +151,82 @@ Single Besties
 
 ---
 
+## 5. Returns and Refunds (Final Sale)
+Paste into Settings > Policies > Refund policy (or a dedicated page).
+
+**Returns and Refunds**
+
+All sales are final. Because our pieces are made just for you, we are not able to
+offer returns, exchanges, or refunds once an order is placed. Please double check
+your size and order details before you check out. If you need sizing help, email
+us any time at jesse@straughterco.com and we are happy to help before you buy.
+
+**Damaged or wrong items**
+We want you to love what you receive. If your order arrives damaged, defective, or
+you received the wrong item, email us at jesse@straughterco.com within 7 days of
+delivery. Please include your order number and a photo of the item, and we will
+make it right.
+
+**Order changes and cancellations**
+Need to fix a size or address? Reach out as soon as possible at
+jesse@straughterco.com. We will do our best to help before your order ships, but
+we cannot make changes once it is on its way.
+
+**Questions?**
+We are always here. Email jesse@straughterco.com and our customer service team
+will take care of you.
+
+XO,
+Single Besties
+
+---
+
+## 6. Welcome / First Order Email
+Use as a welcome email for new subscribers, with a first order discount code.
+Create the code in Shopify under Discounts, then drop it in below.
+
+**Subject line options**
+- Welcome to the besties. Here is a treat.
+- You are one of us now. Enjoy 15 percent off.
+- Hi bestie, your first order is on us a little
+
+**Preview text**
+A little welcome gift for your first Single Besties order.
+
+**Body**
+
+Hi bestie,
+
+Welcome to Single Besties. We are so happy you are here.
+
+Consider this your official invite to the group chat. As a thank you for joining,
+here is 15 percent off your first order.
+
+Use code WELCOME15 at checkout.
+
+A few things to know before you shop:
+- Every order ships within 7 to 14 business days, with tracking sent by email
+- All sales are final, so check your size before you check out
+- Need sizing help? Email us any time at jesse@straughterco.com
+
+Go treat yourself. You have earned it.
+
+[Shop now]
+
+XO,
+Single Besties
+
+---
+
 ## Reference: what is live on the store
 - Customer Service page: /pages/customer-service (in footer menu)
 - Contact page updated with jesse@straughterco.com and shipping timeframe
 - Shipping timeframe (7 to 14 business days) shown on Customer Service and Contact pages
+- Customer Service page states all sales are final, with a damaged or wrong item exception
 
 ## Manual steps still needed in admin
 - Enable abandoned checkout emails: Settings > Checkout > Abandoned checkouts
 - Route contact form and notifications: Settings > Store details > Contact/Sender email to jesse@straughterco.com
 - Official Shipping Policy legal page: Settings > Policies > Shipping policy (paste section 1 above)
+- Refund/Returns legal page (final sale): Settings > Policies > Refund policy (paste section 5 above)
+- Create the WELCOME15 discount code: Discounts > Create discount (for the welcome email in section 6)
