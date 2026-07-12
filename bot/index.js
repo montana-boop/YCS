@@ -4,8 +4,8 @@
 //
 //   npm start      # after `npm run deploy` has registered the commands
 
-import { Client, GatewayIntentBits, Events, Partials } from "discord.js";
-import { commandMap } from "./commands.js";
+import { Client, GatewayIntentBits, Events, Partials, REST, Routes } from "discord.js";
+import { commands, commandMap } from "./commands.js";
 import { botConfig, requireBotEnv } from "./env.js";
 
 const cfg = botConfig();
@@ -21,11 +21,26 @@ const client = new Client({
   partials: [Partials.GuildMember],
 });
 
-client.once(Events.ClientReady, (c) => {
+client.once(Events.ClientReady, async (c) => {
   console.log(`✅ YCS bot online as ${c.user.tag}`);
   console.log(`   Watching ${c.guilds.cache.size} server(s).`);
   if (!cfg.welcomeChannelId) {
     console.log("   (no DISCORD_WELCOME_CHANNEL_ID set — welcomes are off)");
+  }
+  // Auto-register slash commands so hosting is a single step (just `npm start`).
+  // Guild-scoped = instant. Set DISCORD_SKIP_AUTODEPLOY=1 to turn this off.
+  if (process.env.DISCORD_SKIP_AUTODEPLOY || !cfg.clientId || !cfg.guildId) return;
+  try {
+    const rest = new REST({ version: "10" }).setToken(cfg.token);
+    const body = commands.map((cmd) => cmd.data.toJSON());
+    const data = await rest.put(
+      Routes.applicationGuildCommands(cfg.clientId, cfg.guildId),
+      { body }
+    );
+    console.log(`   Registered ${data.length} slash command(s): ${data.map((d) => "/" + d.name).join(", ")}`);
+  } catch (err) {
+    console.error(`   ⚠️ Could not auto-register commands: ${err.message}`);
+    console.error("   (You can run `npm run deploy` manually instead.)");
   }
 });
 

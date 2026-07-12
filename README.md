@@ -47,16 +47,19 @@ DISCORD_WELCOME_MESSAGE=Welcome to YCS, {user} 🎬
 
 (If you're starting fresh, `cp .env.example .env` first.)
 
-## 3. Register commands, then run the bot
+## 3. Run the bot
 
 ```bash
 npm install          # one time (installs discord.js)
-npm run deploy       # registers the slash commands to your server (instant)
-npm start            # brings the bot online
+npm start            # brings the bot online AND registers the slash commands
 # ✅ YCS bot online as YCS#1234
+#    Registered 5 slash command(s): /ping, /blast, /discuss, /invite, /link
 ```
 
-Leave `npm start` running and the slash commands work in Discord.
+`npm start` auto-registers the slash commands on startup, so that's the only
+command you need. (Prefer to register separately? Run `npm run deploy` and set
+`DISCORD_SKIP_AUTODEPLOY=1`.) Leave `npm start` running and the commands work
+in Discord.
 
 ### Slash commands (used inside Discord)
 
@@ -73,14 +76,29 @@ Command visibility is gated by Discord permissions, so regular members only see
 
 ## 4. Keeping it always-on (hosting)
 
-`npm start` runs the bot for as long as the process is alive. For 24/7 uptime,
-run it on a machine or host that stays up — a small VPS, a Raspberry Pi, or a
-free/cheap host like Railway, Fly.io, or Render. Point the host at this repo,
-set the same env vars, and use `npm run deploy` once + `npm start` as the start
-command.
+`npm start` runs the bot only while that process is alive, so for 24/7 uptime it
+needs a host that stays on. Two common paths:
 
-> Note: this Claude Code container is ephemeral, so the bot won't stay online
-> here after the session ends — it's meant to run on your own always-on host.
+**A cloud host (recommended — no computer to keep on).** Railway, Render, and
+Fly.io can run this repo directly:
+
+1. Push this repo to GitHub (already done via the PR branch).
+2. Create a new project on the host and point it at the repo.
+3. Set the service type to a **worker/background** process (not a web server) —
+   the included `Procfile` (`worker: npm start`) declares this.
+4. In the host's dashboard, add the environment variables from your `.env`
+   (`DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID`, `DISCORD_GUILD_ID`,
+   `DISCORD_CHANNEL_ID`, and any welcome vars). **Don't commit `.env`** — paste
+   the values into the host instead.
+5. Deploy. The bot starts, registers its commands, and stays online.
+
+**Your own computer (quickest to try).** Install [Node.js](https://nodejs.org)
+(18+), then in this folder run `npm install` once and `npm start`. The bot is
+online while the terminal stays open — close it and the bot goes offline.
+
+> Note: the Claude Code web container is ephemeral **and** its network blocks
+> `discord.com`, so the bot can't run or be tested from inside a web session —
+> it's meant to run on one of the hosts above.
 
 ---
 
