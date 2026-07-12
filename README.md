@@ -1,132 +1,119 @@
-# YCS — Discord control toolkit
+# YCS — Discord bot & control toolkit
 
-A tiny, dependency-free toolkit to run the YCS Productions Discord from a
-terminal (or from a Claude Code session). It lets you:
+Run the YCS Productions Discord two ways:
 
-- **Refresh the invite link** — create a permanent invite on demand and keep a
-  canonical copy on file, optionally auto-published into `README.md` or a site.
-- **Send blasts** — post announcements to a channel, as the bot or via a webhook.
-- **Start discussions** — open a thread (or a forum post) with a starter message.
+- **The bot** (`bot/`) — an always-on bot that lives in your server and responds
+  to **slash commands** (`/blast`, `/invite`, `/discuss`, `/link`, `/ping`) and
+  **auto-welcomes new members**. This is the main event.
+- **The CLI** (`src/`) — dependency-free one-off commands you (or a Claude Code
+  session) can fire from a terminal without the bot running. Handy for scripts
+  and automation.
 
-No `npm install` needed — it uses Node's built-in `fetch` (Node 18+).
+Both share the same gitignored `.env`.
 
 ---
 
-## 1. One-time Discord setup
+## 1. Create the bot (one time)
 
-You need a **bot** for invites and discussions. (Blasts alone can use a webhook —
-see the shortcut at the bottom.)
-
-1. Go to the [Discord Developer Portal](https://discord.com/developers/applications)
-   → **New Application** → name it (e.g. "YCS Manager").
-2. Open the **Bot** tab → **Reset Token** → copy the token. This is your
-   `DISCORD_BOT_TOKEN`. Keep it secret.
-3. Still on the **Bot** tab, turn on **Message Content Intent** (under
-   "Privileged Gateway Intents"). Save.
-4. Invite the bot to your server. Open the **OAuth2 → URL Generator**:
-   - Scopes: `bot`
+1. [Discord Developer Portal](https://discord.com/developers/applications) →
+   **New Application** → name it (e.g. "YCS").
+2. **General Information** → copy the **Application ID** → this is
+   `DISCORD_CLIENT_ID`.
+3. **Bot** tab → **Reset Token** → copy it → this is `DISCORD_BOT_TOKEN` (secret!).
+4. **Bot** tab → enable **Server Members Intent** (needed for welcomes). Save.
+5. **OAuth2 → URL Generator**:
+   - Scopes: `bot`, `applications.commands`
    - Bot permissions: **Create Invite**, **Send Messages**,
-     **Create Public Threads**, **Send Messages in Threads**
-     (add **Mention Everyone** if you want blasts to ping `@everyone`).
-   - Copy the generated URL, open it, and add the bot to the YCS server.
-5. Enable **Developer Mode** in Discord (User Settings → Advanced) so you can
-   right-click to **Copy Server ID** / **Copy Channel ID**.
+     **Create Public Threads**, **Send Messages in Threads**,
+     **Mention Everyone**, **Manage Server**
+   - Open the generated URL and add the bot to the YCS server.
+6. Enable **Developer Mode** (User Settings → Advanced) to copy server/channel IDs.
 
 ## 2. Configure
 
-Copy the example and fill in your token:
-
-```bash
-cp .env.example .env   # if .env doesn't already exist
-```
-
-Then edit `.env`:
+Your `.env` already has the YCS server + default channel IDs filled in. Add the
+two secrets from above:
 
 ```ini
-DISCORD_BOT_TOKEN=your-bot-token-here
-DISCORD_GUILD_ID=1488629688376234104     # YCS server (pre-filled)
-DISCORD_CHANNEL_ID=1502426896808415354   # default channel (pre-filled)
+DISCORD_BOT_TOKEN=your-bot-token
+DISCORD_CLIENT_ID=your-application-id
+DISCORD_GUILD_ID=1488629688376234104     # pre-filled
+DISCORD_CHANNEL_ID=1502426896808415354   # pre-filled
+
+# Optional — turn on member welcomes:
+DISCORD_WELCOME_CHANNEL_ID=<a channel id>
+DISCORD_WELCOME_MESSAGE=Welcome to YCS, {user} 🎬
 ```
 
-> Tip: a channel URL `discord.com/channels/<server-id>/<channel-id>` gives you
-> both IDs directly.
+(If you're starting fresh, `cp .env.example .env` first.)
 
-Verify it works:
+## 3. Register commands, then run the bot
 
 ```bash
-npm run whoami
-# ✅ Bot connected as YCS Manager (id ...)
+npm install          # one time (installs discord.js)
+npm run deploy       # registers the slash commands to your server (instant)
+npm start            # brings the bot online
+# ✅ YCS bot online as YCS#1234
 ```
 
-## 3. Everyday commands
+Leave `npm start` running and the slash commands work in Discord.
 
-Flags come after npm's `--` separator.
+### Slash commands (used inside Discord)
 
-**Refresh / create the invite link** (never expires by default):
+| Command | Who can use it | What it does |
+|---|---|---|
+| `/ping` | anyone | Health check |
+| `/link` | anyone | Show the current invite link |
+| `/invite [channel] [max_age] [max_uses]` | Create Invite perm | Create/refresh the invite, store it, and post it |
+| `/blast <message> [title] [channel] [ping]` | Manage Server perm | Send an announcement (embed if `title`, ping `@everyone` if `ping:true`) |
+| `/discuss <topic> [message] [channel]` | Create Threads perm | Open a discussion thread (or a forum post) |
+
+Command visibility is gated by Discord permissions, so regular members only see
+`/ping` and `/link`.
+
+## 4. Keeping it always-on (hosting)
+
+`npm start` runs the bot for as long as the process is alive. For 24/7 uptime,
+run it on a machine or host that stays up — a small VPS, a Raspberry Pi, or a
+free/cheap host like Railway, Fly.io, or Render. Point the host at this repo,
+set the same env vars, and use `npm run deploy` once + `npm start` as the start
+command.
+
+> Note: this Claude Code container is ephemeral, so the bot won't stay online
+> here after the session ends — it's meant to run on your own always-on host.
+
+---
+
+## CLI (no bot process needed)
+
+The same actions are available as one-off terminal commands (dependency-free,
+Node 18+). Flags come after npm's `--` separator.
 
 ```bash
-npm run invite
-# ✅ Invite ready: https://discord.gg/abc123
-
-# Also publish it into README.md between the ycs:invite markers:
-npm run invite -- --publish README.md
-
-# A time-limited, single-use invite:
-npm run invite -- --max-age 86400 --max-uses 1
+npm run whoami                                   # verify the token
+npm run invite                                   # create/refresh the invite
+npm run invite -- --publish README.md            # ...and publish it into a file
+npm run link                                     # show the stored invite
+npm run blast   -- --message "New drop is live 🎬"
+npm run blast   -- --title "YCS Update" --message "Doors Friday" --mention "@everyone"
+npm run discuss -- --name "Feedback on the intro" --message "Thoughts?"
 ```
 
-Show the current stored link anytime:
-
-```bash
-npm run link
-```
-
-**Send a blast:**
-
-```bash
-npm run blast -- --message "New drop is live 🎬"
-
-# With a title (posts as an embed) and an @everyone ping:
-npm run blast -- --title "YCS Update" --message "Doors open Friday" --mention "@everyone"
-
-# To a specific channel:
-npm run blast -- --channel 1502426896808415354 --message "Backstage only 👀"
-```
-
-**Start a discussion:**
-
-```bash
-# Public thread in a text channel, with an opening message:
-npm run discuss -- --name "Feedback on the new intro" --message "What do you all think?"
-
-# A post in a forum channel:
-npm run discuss -- --forum --channel <forum-channel-id> --name "Weekly check-in" --message "Drop your wins 👇"
-```
+There's also a **webhook** shortcut for blasts that needs no bot at all: set
+`DISCORD_WEBHOOK_URL` in `.env` (Channel Settings → Integrations → Webhooks),
+then `npm run blast -- --webhook --message "…"`.
 
 ## Where the invite link lives
 
-The current invite is stored in `data/current-invite.json` so `link` can report
-it and `--publish` can keep other files in sync. Publishing replaces the URL
-inside a marked block so it's safe to re-run:
+Both the bot and CLI store the current invite in `data/current-invite.json`, so
+`/link` and `npm run link` always report the latest. `npm run invite --publish`
+keeps a copy in sync inside a marked block (safe to re-run):
 
 <!-- ycs:invite -->
 (no invite published yet — run `npm run invite -- --publish README.md`)
 <!-- /ycs:invite -->
 
-## Webhook shortcut (blasts without a bot)
-
-If you only want to post announcements and don't want to set up a bot: in
-Discord, open **Channel Settings → Integrations → Webhooks → New Webhook**,
-copy the URL into `DISCORD_WEBHOOK_URL` in `.env`, then:
-
-```bash
-npm run blast -- --webhook --message "Quick heads up 📣"
-```
-
-Webhooks can post messages but **cannot** create invite links or start threads —
-those need the bot.
-
 ## Security
 
-`.env`, `.env.local`, and `*.token` are gitignored. Never commit your bot token.
-If it leaks, reset it in the Developer Portal (Bot → Reset Token).
+`.env`, `.env.local`, `*.token`, and `node_modules/` are gitignored. Never commit
+your bot token. If it leaks, reset it in the Developer Portal (Bot → Reset Token).

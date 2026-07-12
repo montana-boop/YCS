@@ -7,6 +7,8 @@
     "ycs-discord": "src/cli.js"
   },
   "scripts": {
+    "start": "node bot/index.js",
+    "deploy": "node bot/deploy.js",
     "discord": "node src/cli.js",
     "blast": "node src/cli.js blast",
     "discuss": "node src/cli.js discuss",
@@ -18,5 +20,11 @@
     "node": ">=18"
   },
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "dependencies": {
+    "discord.js": "^14.26.5"
+  },
+  "overrides": {
+    "undici": "^6.27.0"
+  }
 }
