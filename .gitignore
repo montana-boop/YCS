@@ -1,0 +1,11 @@
+# Secrets — never commit these
+.env
+.env.local
+*.token
+
+# Node
+node_modules/
+npm-debug.log*
+
+# OS noise
+.DS_Store

@@ -1,0 +1,22 @@
+{
+  "name": "ycs-discord",
+  "version": "1.0.0",
+  "description": "YCS Productions Discord control toolkit — refresh the invite link, send blasts, and start discussions from anywhere.",
+  "type": "module",
+  "bin": {
+    "ycs-discord": "src/cli.js"
+  },
+  "scripts": {
+    "discord": "node src/cli.js",
+    "blast": "node src/cli.js blast",
+    "discuss": "node src/cli.js discuss",
+    "invite": "node src/cli.js invite",
+    "link": "node src/cli.js link",
+    "whoami": "node src/cli.js whoami"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true
+}
