@@ -19,6 +19,25 @@ URL: https://singlebesties.com/pages/customer-service
   ships.
 - **Returns and exchanges.** All sales are final. Damaged or incorrect items
   can be reported to jesse@straughterco.com within 7 days of delivery.
+
+## Refund Policy page
+
+A dedicated **Refund Policy** page states that all sales are final.
+Handle: `refund-policy`
+URL: https://singlebesties.com/pages/refund-policy
+
+It leads with "All sales are final" (no returns, exchanges, or refunds),
+covers damaged or incorrect items via jesse@straughterco.com within 7 days,
+restates 7-14 business day shipping, and points questions to
+jesse@straughterco.com. No em dashes are used.
+
+### Manual step: make it the official checkout policy
+
+The Shopify connector does not have the `write_legal_policies` scope, so the
+official **Refund policy** under Settings could not be set through the API.
+To have "all sales are final" appear in the footer and at checkout as the
+official policy, paste the Refund Policy copy into **Settings > Policies >
+Refund policy** in Shopify admin once.
 - **Left something in your cart.** A section tells shoppers who start but do
   not finish checkout that they will receive a reminder of the items they
   left behind so they can pick up where they left off.
