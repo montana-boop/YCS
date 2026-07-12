@@ -1,15 +1,40 @@
 # YCS — Discord bot & control toolkit
 
-Run the YCS Productions Discord two ways:
+Run the YCS Productions Discord three ways:
 
+- **The stable link** (`bot/server.js`) — one URL (`yourhost/discord`) that you
+  put in Kit **once**. The bot keeps a live Discord invite behind it and refreshes
+  it automatically, so the public link never changes and never breaks. This is
+  what kills the weekly "make a new invite and paste it into Kit" chore.
 - **The bot** (`bot/`) — an always-on bot that lives in your server and responds
   to **slash commands** (`/blast`, `/invite`, `/discuss`, `/link`, `/ping`) and
-  **auto-welcomes new members**. This is the main event.
+  **auto-welcomes new members**.
 - **The CLI** (`src/`) — dependency-free one-off commands you (or a Claude Code
-  session) can fire from a terminal without the bot running. Handy for scripts
-  and automation.
+  session) can fire from a terminal without the bot running.
 
 Both share the same gitignored `.env`.
+
+---
+
+## Why the stable link
+
+A raw `discord.gg/…` invite can die even when set to "never expire" — if its
+creator loses channel access, the channel's permissions change, or Discord pauses
+invites during a raid. So instead of pasting the raw invite into Kit, you paste
+**one link the bot controls**:
+
+```
+Kit "Join the group chat" button
+        │
+        ▼
+   yourhost/discord      ← never changes; goes in Kit ONCE
+        │  (302 redirect)
+        ▼
+   discord.gg/<code>     ← bot mints & auto-refreshes this; if it ever
+                           breaks, a fresh one heals it within hours
+```
+
+Set it in Kit one time, then never touch it again.
 
 ---
 
@@ -51,15 +76,16 @@ DISCORD_WELCOME_MESSAGE=Welcome to YCS, {user} 🎬
 
 ```bash
 npm install          # one time (installs discord.js)
-npm start            # brings the bot online AND registers the slash commands
+npm start            # bot online + commands registered + stable link live
 # ✅ YCS bot online as YCS#1234
 #    Registered 5 slash command(s): /ping, /blast, /discuss, /invite, /link
+#    🌐 Stable-link server listening on :3000 — share the /discord path
+#    🔁 startup: stable link now points to discord.gg/abc123
 ```
 
-`npm start` auto-registers the slash commands on startup, so that's the only
-command you need. (Prefer to register separately? Run `npm run deploy` and set
-`DISCORD_SKIP_AUTODEPLOY=1`.) Leave `npm start` running and the commands work
-in Discord.
+`npm start` does everything: registers the slash commands, starts the stable-link
+redirect server, and mints the first invite. (Prefer to register commands
+separately? Run `npm run deploy` and set `DISCORD_SKIP_AUTODEPLOY=1`.)
 
 ### Slash commands (used inside Discord)
 
@@ -84,13 +110,27 @@ Fly.io can run this repo directly:
 
 1. Push this repo to GitHub (already done via the PR branch).
 2. Create a new project on the host and point it at the repo.
-3. Set the service type to a **worker/background** process (not a web server) —
-   the included `Procfile` (`worker: npm start`) declares this.
+3. Keep it a **web service** (it serves the stable `/discord` link) — the
+   included `Procfile` (`web: npm start`) declares this, and the host provides a
+   public URL like `https://ycs-bot.up.railway.app`.
 4. In the host's dashboard, add the environment variables from your `.env`
    (`DISCORD_BOT_TOKEN`, `DISCORD_CLIENT_ID`, `DISCORD_GUILD_ID`,
-   `DISCORD_CHANNEL_ID`, and any welcome vars). **Don't commit `.env`** — paste
-   the values into the host instead.
-5. Deploy. The bot starts, registers its commands, and stays online.
+   `DISCORD_CHANNEL_ID`, and any welcome/invite vars). **Don't commit `.env`** —
+   paste the values into the host instead.
+5. Deploy. The bot starts, registers its commands, mints the first invite, and
+   stays online.
+
+### Then connect it to Kit (one time)
+
+Take your host's public URL, add `/discord`, and put **that** in Kit:
+
+1. Copy your stable link, e.g. `https://ycs-bot.up.railway.app/discord`.
+2. In Kit, open the **"Discord Inner Circle"** landing page
+   (`.../theinnercircle`) → edit the join button → set its link to your stable
+   link → **Publish**.
+
+That's the last time you ever edit the Discord link in Kit. From then on the bot
+keeps the real invite alive behind it.
 
 **Your own computer (quickest to try).** Install [Node.js](https://nodejs.org)
 (18+), then in this folder run `npm install` once and `npm start`. The bot is

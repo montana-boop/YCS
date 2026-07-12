@@ -7,6 +7,8 @@
 import { Client, GatewayIntentBits, Events, Partials, REST, Routes } from "discord.js";
 import { commands, commandMap } from "./commands.js";
 import { botConfig, requireBotEnv } from "./env.js";
+import { startAutoRefresh } from "./refresh.js";
+import { startServer } from "./server.js";
 
 const cfg = botConfig();
 try {
@@ -27,21 +29,26 @@ client.once(Events.ClientReady, async (c) => {
   if (!cfg.welcomeChannelId) {
     console.log("   (no DISCORD_WELCOME_CHANNEL_ID set — welcomes are off)");
   }
+
   // Auto-register slash commands so hosting is a single step (just `npm start`).
   // Guild-scoped = instant. Set DISCORD_SKIP_AUTODEPLOY=1 to turn this off.
-  if (process.env.DISCORD_SKIP_AUTODEPLOY || !cfg.clientId || !cfg.guildId) return;
-  try {
-    const rest = new REST({ version: "10" }).setToken(cfg.token);
-    const body = commands.map((cmd) => cmd.data.toJSON());
-    const data = await rest.put(
-      Routes.applicationGuildCommands(cfg.clientId, cfg.guildId),
-      { body }
-    );
-    console.log(`   Registered ${data.length} slash command(s): ${data.map((d) => "/" + d.name).join(", ")}`);
-  } catch (err) {
-    console.error(`   ⚠️ Could not auto-register commands: ${err.message}`);
-    console.error("   (You can run `npm run deploy` manually instead.)");
+  if (!process.env.DISCORD_SKIP_AUTODEPLOY && cfg.clientId && cfg.guildId) {
+    try {
+      const rest = new REST({ version: "10" }).setToken(cfg.token);
+      const body = commands.map((cmd) => cmd.data.toJSON());
+      const data = await rest.put(
+        Routes.applicationGuildCommands(cfg.clientId, cfg.guildId),
+        { body }
+      );
+      console.log(`   Registered ${data.length} slash command(s): ${data.map((d) => "/" + d.name).join(", ")}`);
+    } catch (err) {
+      console.error(`   ⚠️ Could not auto-register commands: ${err.message}`);
+      console.error("   (You can run `npm run deploy` manually instead.)");
+    }
   }
+
+  // Keep a live invite fresh behind the stable /discord link.
+  startAutoRefresh(client, cfg);
 });
 
 // Slash command dispatch.
@@ -77,10 +84,15 @@ client.on(Events.GuildMemberAdd, async (member) => {
   }).catch((err) => console.error("Welcome failed:", err.message));
 });
 
+// Start the stable-link redirect server right away (it doesn't need Discord —
+// it serves the last-known invite from the store and 503s until the first mint).
+const httpServer = startServer(cfg);
+
 // Graceful shutdown.
 for (const sig of ["SIGINT", "SIGTERM"]) {
   process.on(sig, () => {
     console.log(`\nShutting down (${sig})…`);
+    httpServer.close();
     client.destroy();
     process.exit(0);
   });
