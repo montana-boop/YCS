@@ -70,7 +70,7 @@ Ready when you are. Just tap the button below to pick up right where you left of
 Questions about your order or sizing? Email us any time at
 jesse@straughterco.com and we are happy to help.
 
-With love,
+XO,
 Single Besties
 
 **Optional second reminder (send about 24 hours later)**
@@ -87,7 +87,7 @@ jesse@straughterco.com.
 
 [Return to cart]
 
-With love,
+XO,
 Single Besties
 
 ---
@@ -115,7 +115,7 @@ You will find your full order details below.
 Need to make a change or have a question? Email us at jesse@straughterco.com with
 your order number and we will take care of you.
 
-With love,
+XO,
 Single Besties
 
 ---
@@ -142,7 +142,7 @@ email us any time at jesse@straughterco.com and we will help you sort it out.
 
 Thank you for shopping with us.
 
-With love,
+XO,
 Single Besties
 
 ---
