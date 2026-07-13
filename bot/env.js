@@ -15,6 +15,10 @@ export function botConfig() {
     // How often (hours) to mint a fresh invite behind the stable link. 0 = off.
     refreshHours: Number(process.env.DISCORD_INVITE_REFRESH_HOURS || 6),
     port: Number(process.env.PORT || 3000),
+    // Daily "question of the day" posts.
+    dailyChannelId: process.env.DISCORD_DAILY_CHANNEL_ID || "", // falls back to channelId
+    dailyTime: process.env.DISCORD_DAILY_TIME || "09:00", // 24h HH:MM in dailyTz
+    dailyTz: process.env.DISCORD_DAILY_TZ || "America/Los_Angeles",
     welcomeChannelId: process.env.DISCORD_WELCOME_CHANNEL_ID || "",
     welcomeMessage:
       process.env.DISCORD_WELCOME_MESSAGE ||

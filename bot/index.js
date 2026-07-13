@@ -9,6 +9,7 @@ import { commands, commandMap } from "./commands.js";
 import { botConfig, requireBotEnv } from "./env.js";
 import { startAutoRefresh } from "./refresh.js";
 import { startServer } from "./server.js";
+import { startDailyScheduler } from "./daily.js";
 
 const cfg = botConfig();
 try {
@@ -49,6 +50,9 @@ client.once(Events.ClientReady, async (c) => {
 
   // Keep a live invite fresh behind the stable /discord link.
   startAutoRefresh(client, cfg);
+
+  // Post the daily question of the day on schedule.
+  startDailyScheduler(client, cfg);
 });
 
 // Slash command dispatch.

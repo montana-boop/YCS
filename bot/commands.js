@@ -10,6 +10,8 @@ import {
   MessageFlags,
 } from "discord.js";
 import { writeLink, readLink } from "../src/store.js";
+import { botConfig } from "./env.js";
+import { DAILY_POSTS, tzNow, postDay } from "./daily.js";
 
 const YCS_BLURPLE = 0x5865f2;
 
@@ -191,5 +193,32 @@ const link = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link];
+// --- /qotd ------------------------------------------------------------------
+// Posts today's scheduled question of the day right now (for catching up on a
+// day the timer already passed, or just posting on demand).
+const qotd = {
+  data: new SlashCommandBuilder()
+    .setName("qotd")
+    .setDescription("Post today's question of the day now.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  async execute(interaction) {
+    const cfg = botConfig();
+    const { weekday } = tzNow(cfg.dailyTz);
+    if (!DAILY_POSTS[weekday]) {
+      await interaction.reply({
+        content: `nothing scheduled for ${weekday} yet (weekends are off for now).`,
+        flags: MessageFlags.Ephemeral,
+      });
+      return;
+    }
+    const channelId = cfg.dailyChannelId || cfg.channelId;
+    const sent = await postDay(interaction.client, channelId, weekday);
+    await interaction.reply({
+      content: `posted today's qotd 🍒 — [jump](${sent.url})`,
+      flags: MessageFlags.Ephemeral,
+    });
+  },
+};
+
+export const commands = [ping, blast, discuss, invite, link, qotd];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));
