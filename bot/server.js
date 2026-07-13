@@ -44,9 +44,9 @@ export function startServer(cfg) {
       res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
       res.end(
         `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">` +
-          `<title>YCS · Discord link</title>` +
+          `<title>Single Besties · Discord link</title>` +
           `<body style="font-family:system-ui,sans-serif;max-width:620px;margin:40px auto;padding:0 20px;line-height:1.6;color:#1a1b23">` +
-          `<h1 style="color:#5865f2">YCS Discord link</h1>` +
+          `<h1 style="color:#5865f2">Single Besties · Discord link</h1>` +
           `<p>Your <b>stable join link</b> is <a href="/discord">/discord</a> — put that in Kit; it never changes.</p>` +
           (rec?.url
             ? `<p>It currently forwards to <code>${rec.url}</code><br><small>refreshed ${rec.createdAt}</small></p>`

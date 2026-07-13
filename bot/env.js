@@ -18,7 +18,7 @@ export function botConfig() {
     welcomeChannelId: process.env.DISCORD_WELCOME_CHANNEL_ID || "",
     welcomeMessage:
       process.env.DISCORD_WELCOME_MESSAGE ||
-      "Welcome to YCS, {user} 🎬 Glad you're here — introduce yourself!",
+      "welcome to single besties, {user} 💌 you're officially in the group chat — pull up a chair and introduce yourself, bestie ✨",
   };
 }
 

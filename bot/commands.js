@@ -17,7 +17,7 @@ const YCS_BLURPLE = 0x5865f2;
 const ping = {
   data: new SlashCommandBuilder()
     .setName("ping")
-    .setDescription("Check that the YCS bot is alive."),
+    .setDescription("Check that the bot is alive."),
   async execute(interaction) {
     const latency = Math.round(interaction.client.ws.ping);
     await interaction.reply({
