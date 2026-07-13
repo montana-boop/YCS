@@ -1,0 +1,14 @@
+# Secrets — never commit these
+.env
+.env.local
+*.token
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Runtime state (the current invite is minted live, not committed)
+data/
+
+# OS noise
+.DS_Store
