@@ -212,7 +212,7 @@ const qotd = {
       return;
     }
     const channelId = cfg.dailyChannelId || cfg.channelId;
-    const sent = await postDay(interaction.client, channelId, weekday);
+    const sent = await postDay(interaction.client, channelId, weekday, cfg.dailyMention);
     await interaction.reply({
       content: `posted today's qotd 🍒 — [jump](${sent.url})`,
       flags: MessageFlags.Ephemeral,
