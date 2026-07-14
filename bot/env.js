@@ -18,7 +18,12 @@ export function botConfig() {
     // Daily "question of the day" posts.
     dailyChannelId: process.env.DISCORD_DAILY_CHANNEL_ID || "", // falls back to channelId
     dailyTime: process.env.DISCORD_DAILY_TIME || "09:00", // 24h HH:MM in dailyTz
-    dailyTz: process.env.DISCORD_DAILY_TZ || "America/Los_Angeles",
+    dailyTz: process.env.DISCORD_DAILY_TZ || "America/New_York",
+    // Prepended... appended to each daily post so members get pinged. "" disables.
+    dailyMention:
+      process.env.DISCORD_DAILY_MENTION !== undefined
+        ? process.env.DISCORD_DAILY_MENTION
+        : "@everyone",
     welcomeChannelId: process.env.DISCORD_WELCOME_CHANNEL_ID || "",
     welcomeMessage:
       process.env.DISCORD_WELCOME_MESSAGE ||

@@ -53,12 +53,14 @@ export function tzNow(tz) {
   };
 }
 
-// Post a specific day's message to a channel (no accidental @mentions).
-export async function postDay(client, channelId, weekday) {
+// Post a specific day's message to a channel, optionally ending with a mention
+// (e.g. "@everyone") so members get notified.
+export async function postDay(client, channelId, weekday, mention = "") {
   const text = DAILY_POSTS[weekday];
   if (!text) return null;
   const channel = await client.channels.fetch(channelId);
-  return channel.send({ content: text, allowedMentions: { parse: [] } });
+  const content = mention ? `${text}\n\n${mention}` : text;
+  return channel.send({ content, allowedMentions: { parse: ["everyone", "roles"] } });
 }
 
 // Fire the matching weekday's post once per day at cfg.dailyTime in cfg.dailyTz.
@@ -79,7 +81,7 @@ export function startDailyScheduler(client, cfg) {
     if (time === target && DAILY_POSTS[weekday] && lastPostedDate !== date) {
       lastPostedDate = date;
       try {
-        await postDay(client, channelId, weekday);
+        await postDay(client, channelId, weekday, cfg.dailyMention);
         console.log(`   ✅ Posted ${weekday}'s question of the day`);
       } catch (err) {
         console.error(`   ⚠️ Daily post failed: ${err.message}`);
