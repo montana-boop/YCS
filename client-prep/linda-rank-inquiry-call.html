@@ -1,0 +1,491 @@
+<title>Inquiry Call Prep — Linda Rank / soul&beautyMEDx</title>
+<style>
+  :root {
+    /* palette — grounded in Linda's "beauty in balance": soft porcelain, warm ink, muted mauve, champagne */
+    --porcelain: #FBF7F5;
+    --card: #FFFFFF;
+    --ink: #2A2028;
+    --ink-soft: #5F5259;
+    --line: #ECE1DD;
+    --mauve: #9E5F7C;
+    --mauve-deep: #7E4863;
+    --champagne: #B08A54;
+    --sage: #5E7C66;
+    --sage-bg: #EAF0EA;
+    --rose-bg: #F7E9EE;
+    --amber-bg: #F6ECDC;
+    --shadow: 0 1px 2px rgba(42,32,40,.04), 0 8px 24px -12px rgba(126,72,99,.18);
+    --radius: 14px;
+    --maxw: 940px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --porcelain: #1A151A;
+      --card: #241D24;
+      --ink: #F3EAEF;
+      --ink-soft: #B7A6B0;
+      --line: #3A2F38;
+      --mauve: #D69AB6;
+      --mauve-deep: #E4B2C9;
+      --champagne: #D6B074;
+      --sage: #93B79B;
+      --sage-bg: #26332A;
+      --rose-bg: #3A222E;
+      --amber-bg: #3A2E1E;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 30px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="light"] {
+    --porcelain:#FBF7F5; --card:#FFFFFF; --ink:#2A2028; --ink-soft:#5F5259; --line:#ECE1DD;
+    --mauve:#9E5F7C; --mauve-deep:#7E4863; --champagne:#B08A54; --sage:#5E7C66;
+    --sage-bg:#EAF0EA; --rose-bg:#F7E9EE; --amber-bg:#F6ECDC;
+    --shadow:0 1px 2px rgba(42,32,40,.04),0 8px 24px -12px rgba(126,72,99,.18);
+  }
+  :root[data-theme="dark"] {
+    --porcelain:#1A151A; --card:#241D24; --ink:#F3EAEF; --ink-soft:#B7A6B0; --line:#3A2F38;
+    --mauve:#D69AB6; --mauve-deep:#E4B2C9; --champagne:#D6B074; --sage:#93B79B;
+    --sage-bg:#26332A; --rose-bg:#3A222E; --amber-bg:#3A2E1E;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 30px -14px rgba(0,0,0,.55);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--porcelain);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px 96px; }
+  .serif { font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif; }
+
+  /* header */
+  header {
+    padding: 48px 0 24px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 8px;
+  }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--mauve); font-weight: 700; margin: 0 0 14px;
+  }
+  h1.serif {
+    font-size: clamp(30px, 5vw, 46px); line-height: 1.08; margin: 0 0 10px;
+    font-weight: 600; letter-spacing: -.01em; text-wrap: balance;
+  }
+  .sub { font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 62ch; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .pill {
+    font-size: 12.5px; padding: 5px 11px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line); color: var(--ink-soft);
+  }
+  .pill b { color: var(--ink); font-weight: 600; }
+
+  /* sections */
+  section { margin-top: 44px; scroll-margin-top: 20px; }
+  h2.serif {
+    font-size: 24px; font-weight: 600; margin: 0 0 4px; letter-spacing: -.01em;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  h2 .num {
+    font-size: 13px; font-family: inherit; color: var(--mauve); font-weight: 700;
+    letter-spacing: .1em; font-family: -apple-system, sans-serif;
+  }
+  .section-note { color: var(--ink-soft); font-size: 15px; margin: 6px 0 22px; max-width: 68ch; }
+
+  /* cards */
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 24px; box-shadow: var(--shadow); margin-bottom: 16px;
+  }
+  .card h3 { margin: 0 0 12px; font-size: 16px; font-weight: 700; letter-spacing: -.005em; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 680px) { .grid2 { grid-template-columns: 1fr; } }
+
+  ul.clean { list-style: none; margin: 0; padding: 0; }
+  ul.clean li { position: relative; padding: 7px 0 7px 24px; border-top: 1px solid var(--line); }
+  ul.clean li:first-child { border-top: none; }
+  ul.clean li::before {
+    content: ""; position: absolute; left: 4px; top: 15px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--mauve);
+  }
+  ul.clean li b { font-weight: 600; }
+  .lead-in { font-weight: 600; color: var(--ink); }
+
+  /* fact list */
+  .facts { display: grid; grid-template-columns: max-content 1fr; gap: 4px 20px; font-size: 15px; }
+  .facts dt { color: var(--ink-soft); font-weight: 500; padding: 6px 0; border-top: 1px solid var(--line); }
+  .facts dd { margin: 0; padding: 6px 0; border-top: 1px solid var(--line); }
+  .facts dt:first-of-type, .facts dd:first-of-type { border-top: none; }
+
+  /* strengths / opportunity cards */
+  .tag { display:inline-block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:3px 9px; border-radius:6px; margin-bottom:12px; }
+  .tag.good { background: var(--sage-bg); color: var(--sage); }
+  .tag.opp { background: var(--rose-bg); color: var(--mauve-deep); }
+
+  /* agenda timeline */
+  .agenda { position: relative; margin-top: 8px; }
+  .slot { display: grid; grid-template-columns: 74px 1fr; gap: 18px; padding: 0 0 22px; position: relative; }
+  .slot:not(:last-child)::before {
+    content:""; position:absolute; left: 8px; top: 22px; bottom: -4px; width: 2px; background: var(--line);
+  }
+  .slot .time {
+    position: relative; font-weight: 700; font-size: 13px; color: var(--mauve-deep);
+    font-variant-numeric: tabular-nums; padding-left: 22px;
+  }
+  .slot .time::before {
+    content:""; position:absolute; left:2px; top:5px; width:14px; height:14px; border-radius:50%;
+    background: var(--card); border: 2px solid var(--mauve);
+  }
+  .slot .body h4 { margin: 0 0 4px; font-size: 15.5px; font-weight: 700; }
+  .slot .body p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+  .slot .body .say { margin-top: 8px; font-size: 14px; border-left: 2px solid var(--champagne); padding: 2px 0 2px 12px; color: var(--ink); font-style: italic; }
+
+  /* Q blocks */
+  .qcat { font-weight: 700; font-size: 13px; letter-spacing: .04em; color: var(--mauve-deep); text-transform: uppercase; margin: 18px 0 6px; }
+  .qcat:first-child { margin-top: 0; }
+  ol.q { margin: 0; padding-left: 20px; }
+  ol.q li { padding: 5px 0; }
+
+  /* objection table */
+  table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+  th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  td.obj { font-weight: 600; width: 34%; }
+  .tablewrap { overflow-x: auto; }
+
+  /* callout */
+  .callout {
+    background: linear-gradient(180deg, var(--rose-bg), var(--card));
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 24px; margin-bottom: 16px;
+  }
+  .callout h3 { margin: 0 0 8px; color: var(--mauve-deep); font-size: 15px; letter-spacing: .02em; text-transform: uppercase; }
+  .callout p { margin: 0; }
+
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 680px) { .do-dont { grid-template-columns: 1fr; } }
+  .do-dont .card ul.clean li::before { background: var(--sage); }
+  .do-dont .dont ul.clean li::before { background: var(--mauve); }
+
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; }
+  a { color: var(--mauve-deep); }
+  .disclaimer { font-size: 12.5px; color: var(--ink-soft); background: var(--amber-bg); border-radius: 10px; padding: 12px 16px; margin-top: 18px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Social Bestie · Inquiry Call Prep</p>
+    <h1 class="serif">Linda Rank &amp; soul&amp;beautyMEDx</h1>
+    <p class="sub">Everything to study before your 30-minute inquiry call. She's not a client yet — the only job of this call is to build rapport, understand her world, and earn the next conversation.</p>
+    <div class="meta-row">
+      <span class="pill"><b>Who</b> &nbsp;Linda Rank, PA-C — Founder</span>
+      <span class="pill"><b>Business</b> &nbsp;soul&amp;beautyMEDx (med spa)</span>
+      <span class="pill"><b>Where</b> &nbsp;Mission Viejo, OC</span>
+      <span class="pill"><b>IG</b> &nbsp;@lindarankinjects · ~27K</span>
+      <span class="pill"><b>Call</b> &nbsp;30 min · inquiry only</span>
+    </div>
+  </header>
+
+  <!-- CHEAT SHEET -->
+  <section id="snapshot">
+    <h2 class="serif"><span class="num">01</span> The 60-second snapshot</h2>
+    <p class="section-note">If you only remember five things walking into the call, remember these.</p>
+    <div class="card">
+      <ul class="clean">
+        <li><b>She's a heavyweight, not a beginner.</b> 25+ years in aesthetics, national trainer &amp; speaker for <b>Allergan and Galderma</b> — she teaches other injectors. Treat her as a peer expert in <em>her</em> craft; you're the expert in <em>yours</em> (social).</li>
+        <li><b>Her name is Linda Rank</b> — not "Rankin." The handle @lindarank<em>injects</em> reads as "Linda Rank injects." Say "Rank." Co-founder is her husband, <b>Dr. Christian Rank</b> (board-certified physician).</li>
+        <li><b>Her brand already looks good.</b> ~27K IG followers, clear aesthetic, strong philosophy ("Beauty in Balance"). Don't tell her it's broken — she knows it works. Your angle is <em>leverage &amp; consistency</em>, not rescue.</li>
+        <li><b>Two revenue engines to serve:</b> (1) the med spa patients, and (2) her <b>injector-training business</b> — she mentors MDs/NPs/RNs nationally. That second audience is a content goldmine most agencies would miss.</li>
+        <li><b>This is an inquiry call.</b> Goal = qualify fit + book a paid audit/discovery call. <b>Do not pitch a package or a price today.</b> Listen more than you talk.</li>
+      </ul>
+    </div>
+    <div class="disclaimer">⚠️ All facts below are pulled from public sources (her site, Instagram, Yelp, press) as of July 2026. Treat them as <b>conversation starters to confirm on the call</b>, not gospel — details like membership pricing and follower counts drift.</div>
+  </section>
+
+  <!-- THE PERSON -->
+  <section id="person">
+    <h2 class="serif"><span class="num">02</span> Who you're talking to</h2>
+    <p class="section-note">Understand her before you sell to her. Credibility, philosophy, and status all shape how she'll want to be spoken to.</p>
+    <div class="card">
+      <h3>Linda Rank, PA-C — Founder &amp; lead injector</h3>
+      <dl class="facts">
+        <dt>Experience</dt><dd>25+ years in aesthetics; ~18 years in dermatology. A true veteran.</dd>
+        <dt>Authority</dt><dd>National trainer &amp; speaker for <b>Allergan</b> (Botox/Juvéderm) and <b>Galderma</b> (Dysport/Restylane). She trains the injectors your other prospects hire.</dd>
+        <dt>Philosophy</dt><dd>"<b>Beauty in Balance</b>" — facial harmony, natural results, "removing shadows and adding light back to the face" while preserving expression. Anti-overdone.</dd>
+        <dt>Reputation</dt><dd>170+ Yelp reviews, consistently glowing. Clients describe her as "calm and nurturing," "quiet confidence," patient, educational, "no pressure."</dd>
+        <dt>Press</dt><dd>Featured at the <b>VIP Oscars Gifting Lounge</b> in Beverly Hills (March 2026) — private suite, aesthetic consults for VIP guests. A great, genuine thing to congratulate her on.</dd>
+        <dt>Handles</dt><dd>@lindarankinjects (personal brand, ~27K) &amp; @lindarank_beautypa; practice account @soulandbeautymedx.</dd>
+      </dl>
+    </div>
+    <div class="callout">
+      <h3>Read on her personality</h3>
+      <p>The through-line in every review is <b>calm, educational, low-pressure, trustworthy</b>. That's how she treats patients — and it's exactly how she'll want to be treated as a buyer. A hard-sell, hype-y pitch will repel her. Mirror her energy: measured, curious, generous with insight. Win by being the calm expert, not the loud one.</p>
+    </div>
+  </section>
+
+  <!-- THE BUSINESS -->
+  <section id="business">
+    <h2 class="serif"><span class="num">03</span> The business at a glance</h2>
+    <p class="section-note">soul&amp;beautyMEDx (est. 2012, formerly skin&amp;bodyMEDx) — an integrated aesthetics + wellness practice serving Mission Viejo, Ladera Ranch, Rancho Santa Margarita, and surrounding Orange County.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>What they sell</h3>
+        <ul class="clean">
+          <li><b>Injectables:</b> Botox, Dysport, dermal fillers, lip filler, facial balancing (her signature)</li>
+          <li><b>Skin &amp; laser:</b> MOXI, BBL, SofWave, RF microneedling, HydraFacial, chemical peels, laser hair removal</li>
+          <li><b>Regenerative &amp; wellness:</b> PRP, hormone optimization — "beauty from the inside out"</li>
+          <li><b>B2B:</b> 1-on-1 <b>injector training</b> for MD/DO, PA/NP, RN</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>How they monetize recurring revenue</h3>
+        <ul class="clean">
+          <li><b>Moxie Membership</b> — member-only pricing on tox, regenerative &amp; skincare</li>
+          <li><b>Botox Club</b> — ~$99 start-up + ~$110/mo, banks 10 units of tox monthly to accumulate</li>
+          <li><b>Moxie Revival / Skin Club</b> &amp; <b>Beauty Vault</b> — skin &amp; treatment membership tiers</li>
+          <li><b>Takeaway:</b> memberships = predictable MRR. Social's job is to <em>fill and retain</em> these.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>Why the memberships matter to your pitch</h3>
+      <p>Med spas live and die on recurring members, not one-off treatments. When you eventually talk value, frame social not as "more likes" but as "<b>more members in the Botox Club / Beauty Vault, and more butts in seats for training</b>." That's the number she actually cares about.</p>
+    </div>
+  </section>
+
+  <!-- SOCIAL AUDIT -->
+  <section id="audit">
+    <h2 class="serif"><span class="num">04</span> Social read — strengths &amp; openings</h2>
+    <p class="section-note">Your core competency. Come in having <em>noticed</em> her content — specificity earns trust. Frame the openings as questions/hypotheses to explore <b>with</b> her, never as "here's what you're doing wrong."</p>
+
+    <div class="grid2">
+      <div class="card">
+        <span class="tag good">Already strong — praise it</span>
+        <ul class="clean">
+          <li><b>Founder-led brand.</b> A real face with 27K is worth more than a faceless clinic page.</li>
+          <li><b>Clear aesthetic &amp; POV.</b> "Beauty in Balance" is a genuine, ownable brand position.</li>
+          <li><b>Built-in authority.</b> National-trainer status is instant credibility most spas can't fake.</li>
+          <li><b>Endless raw material.</b> Before/afters, technique, injectables education, press moments.</li>
+          <li><b>Dual audience.</b> Patients <em>and</em> aspiring injectors — two funnels, one creator.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag opp">Openings — explore, don't accuse</span>
+        <ul class="clean">
+          <li><b>Consistency vs. calendar.</b> Founder-run accounts go quiet when she's busy injecting. Who posts when she's fully booked?</li>
+          <li><b>Personal vs. practice split.</b> Is @soulandbeautymedx underused next to her personal page? Is effort duplicated or coordinated?</li>
+          <li><b>Follower → booking path.</b> Are Reels converting to consults &amp; memberships, or just views? Story→DM→book flow, link-in-bio, highlights.</li>
+          <li><b>Training funnel is invisible on social.</b> Her B2B training could be its own content pillar to fellow injectors.</li>
+          <li><b>Reviews not repurposed.</b> 170+ Yelp raves = social proof that rarely makes it onto the grid.</li>
+          <li><b>Local reach.</b> Geo-targeted content for Mission Viejo / Ladera / RSM to own the local search + IG map.</li>
+          <li><b>Email × social.</b> Are followers captured into an email list to nurture into memberships?</li>
+        </ul>
+      </div>
+    </div>
+    <div class="disclaimer">These are <b>hypotheses</b>, not findings. Pull up her actual grid the morning of the call and confirm which ones are true. On the call, say "I noticed X — is that intentional or a bandwidth thing?" — let her tell you the gap.</div>
+  </section>
+
+  <!-- WHAT AN INQUIRY CALL IS -->
+  <section id="mindset">
+    <h2 class="serif"><span class="num">05</span> What an inquiry call actually is</h2>
+    <p class="section-note">Since this is your first as owner of Social Bestie — the framing that keeps you from over-selling.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>The only 3 goals</h3>
+        <ul class="clean">
+          <li><b>Qualify fit.</b> Is she a good client for you, and are you a good fit for her? It's a two-way interview.</li>
+          <li><b>Diagnose.</b> Understand her goals, frustrations, and what "success" means to her — in her words.</li>
+          <li><b>Book the next step.</b> A paid audit / strategy session / proposal review. The next meeting <em>is</em> the win.</li>
+        </ul>
+      </div>
+      <div class="card dont">
+        <h3>What it is <em>not</em></h3>
+        <ul class="clean">
+          <li>Not a pitch of your packages or a price quote.</li>
+          <li>Not a monologue about everything you'd do.</li>
+          <li>Not closing the deal on the spot.</li>
+          <li>Not proving you're smart by listing tactics — that's discovery-call territory, later.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>The one ratio to remember</h3>
+      <p>Aim to <b>talk ~30%, listen ~70%.</b> The person asking the questions controls the conversation. Every minute she's talking about her business is a minute you're learning how to win it.</p>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <section id="agenda">
+    <h2 class="serif"><span class="num">06</span> Your 30-minute game plan</h2>
+    <p class="section-note">A loose structure, not a script. Time blocks keep you from spending 25 minutes on rapport or diving into tactics too early.</p>
+    <div class="card agenda">
+      <div class="slot">
+        <div class="time">0–4 min</div>
+        <div class="body">
+          <h4>Warm open &amp; rapport</h4>
+          <p>Genuine, specific, brief. Congratulate her on something real, then set the frame for the call.</p>
+          <p class="say">"Linda, thanks so much for the time. I have to say — I saw you were at the Oscars gifting lounge in Beverly Hills, that's amazing. Before we dive in: my goal today is really just to learn about you and the practice and see if we're a fit. Sound good?"</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">4–8 min</div>
+        <div class="body">
+          <h4>Frame the call &amp; her time</h4>
+          <p>Set expectations so she relaxes: no hard sell today. Confirm what <em>she</em> hoped to get out of it.</p>
+          <p class="say">"So there's no pressure here — I won't pitch you a package today. I just want to understand your goals, and if it makes sense we'll book a deeper strategy session. What made you want to hop on a call?"</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">8–20 min</div>
+        <div class="body">
+          <h4>Discovery — the heart of the call</h4>
+          <p>This is 40% of your time on purpose. Work through the discovery questions (next section). Take notes, reflect back what you hear, dig one layer deeper on each answer.</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">20–25 min</div>
+        <div class="body">
+          <h4>Reflect back + one insight</h4>
+          <p>Summarize her goal in her words, then offer <em>one</em> sharp, specific observation about her social — proof you did the homework — without giving away the full plan.</p>
+          <p class="say">"So it sounds like the real goal is filling the membership, not just growing followers. One thing I noticed — your training side barely shows up on the grid, and that's a whole audience of injectors you could be speaking to. That's the kind of thing we'd map out together."</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">25–30 min</div>
+        <div class="body">
+          <h4>Close to the next step</h4>
+          <p>Don't leave it vague. Propose a concrete next meeting and put it on the calendar before you hang up.</p>
+          <p class="say">"I'd love to do a proper audit of your accounts and put together a little strategy — walk you through exactly what I'd focus on first. Could we grab 45 minutes next week for that? … Great, does Tuesday or Thursday work better?"</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DISCOVERY QUESTIONS -->
+  <section id="questions">
+    <h2 class="serif"><span class="num">07</span> Discovery questions to have ready</h2>
+    <p class="section-note">Pick 6–8, don't machine-gun all of them. Open-ended, then follow her thread. The <span class="lead-in">bolded</span> ones are your must-asks.</p>
+    <div class="card">
+      <p class="qcat">Goals &amp; vision</p>
+      <ol class="q">
+        <li><b>"What does growing the business look like for you over the next year — more patients, more members, the training side, something else?"</b></li>
+        <li>"If we nailed the social side, what would actually change for the practice?"</li>
+        <li>"Which is the priority right now — the med spa, or the injector training business?"</li>
+      </ol>
+      <p class="qcat">Current state &amp; pain</p>
+      <ol class="q">
+        <li><b>"How are you handling social right now — is it all you, or do you have help?"</b></li>
+        <li>"What's the most frustrating part of it? What makes you want to hand it off?"</li>
+        <li>"When you get busy with patients, what happens to the content?"</li>
+        <li>"Are the two accounts — your personal page and the practice page — working together or kind of doing their own thing?"</li>
+      </ol>
+      <p class="qcat">Results &amp; measurement</p>
+      <ol class="q">
+        <li><b>"How do new patients find you today — referrals, Instagram, Google, walk-ins?"</b></li>
+        <li>"Do you know if Instagram is actually turning into bookings, or is it hard to tell?"</li>
+        <li>"How full are the memberships — Botox Club, Beauty Vault? Is filling those a goal?"</li>
+      </ol>
+      <p class="qcat">Fit &amp; logistics</p>
+      <ol class="q">
+        <li>"Have you worked with a social agency or freelancer before? How did that go?"</li>
+        <li>"What would make this a no-brainer 'yes' for you?"</li>
+        <li>"Who else is involved in a decision like this — is Dr. Rank part of it?"</li>
+        <li>"What's your timeline — is this a now thing or a next-few-months thing?"</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- OBJECTIONS -->
+  <section id="objections">
+    <h2 class="serif"><span class="num">08</span> Likely objections &amp; calm responses</h2>
+    <p class="section-note">She's a savvy buyer who's probably been pitched before. Don't argue — acknowledge, reframe, redirect to the next step. Never wing the price on an inquiry call.</p>
+    <div class="card tablewrap">
+      <table>
+        <thead><tr><th>She might say…</th><th>Your calm reframe</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="obj">"I already do my own social and it's doing fine."</td>
+            <td>"Totally — and honestly it shows, your page is one of the better ones I've seen in the space. The question I'd explore is whether it's turning into <em>booked members</em>, and what it's costing you in time you'd rather spend injecting."</td>
+          </tr>
+          <tr>
+            <td class="obj">"What do you charge?"</td>
+            <td>"Great question — it depends on scope, so I'd hate to throw out a random number. Let me do a proper audit first, then I can show you a couple of options that actually fit your goals. That's what I'd cover in our next call."</td>
+          </tr>
+          <tr>
+            <td class="obj">"I've been burned by an agency before."</td>
+            <td>"I hear that a lot, and it's fair. What went wrong last time? … That's exactly the stuff I'd want to do differently — mind if I ask what 'good' would've looked like?"</td>
+          </tr>
+          <tr>
+            <td class="obj">"How is this different from all the other people pitching me?"</td>
+            <td>"Honestly, most will promise followers. I care about members and consults booked — and I actually looked at how your training audience is underserved. That's a lever most people wouldn't even notice."</td>
+          </tr>
+          <tr>
+            <td class="obj">"I don't really have time for this right now."</td>
+            <td>"That's the exact reason to explore it — the whole point is to take it off your plate. No commitment today; let's just do the audit and you can decide from there."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- DO / DON'T -->
+  <section id="dodont">
+    <h2 class="serif"><span class="num">09</span> Do &amp; don't</h2>
+    <div class="do-dont">
+      <div class="card">
+        <span class="tag good">Do</span>
+        <ul class="clean">
+          <li>Pull up her live grid the morning of the call.</li>
+          <li>Say her name right — <b>Rank</b>.</li>
+          <li>Compliment specifically, then get curious.</li>
+          <li>Take visible notes; reflect her words back.</li>
+          <li>Speak in her currency: members, consults, time saved.</li>
+          <li>End with a booked next meeting.</li>
+        </ul>
+      </div>
+      <div class="card dont">
+        <span class="tag opp">Don't</span>
+        <ul class="clean">
+          <li>Don't quote a price or pitch a package.</li>
+          <li>Don't imply her current social is bad.</li>
+          <li>Don't monologue your whole strategy.</li>
+          <li>Don't over-promise ("we'll 10x you").</li>
+          <li>Don't let it end with "I'll send some info."</li>
+          <li>Don't forget the training business exists.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RAPPORT HOOKS -->
+  <section id="hooks">
+    <h2 class="serif"><span class="num">10</span> Rapport hooks &amp; pronunciation</h2>
+    <div class="grid2">
+      <div class="card">
+        <h3>Genuine things to mention</h3>
+        <ul class="clean">
+          <li>The <b>Oscars gifting lounge</b> in Beverly Hills — recent, impressive, real.</li>
+          <li>Her <b>national trainer</b> status — "you literally teach other injectors, that's a different level."</li>
+          <li>The <b>"Beauty in Balance"</b> philosophy — natural results, not overdone.</li>
+          <li>Her <b>10+ year repeat clients</b> from the reviews — retention like that is rare.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Don't-get-it-wrong notes</h3>
+        <ul class="clean">
+          <li>Name: <b>Linda Rank</b> ("Rank"), not Rankin.</li>
+          <li>Business: <b>soul&amp;beautyMEDx</b> (was skin&amp;bodyMEDx).</li>
+          <li>Partner: <b>Dr. Christian Rank</b>, co-founder, may be a decision-maker.</li>
+          <li>She's a <b>PA-C</b>, a clinician — respect the medical credibility.</li>
+          <li>It's an <b>inquiry</b> call — she is <em>not</em> a client yet. Onboarding comes only after she says yes.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prepared for your inquiry call with Linda Rank, PA-C — soul&amp;beautyMEDx, Mission Viejo, CA. Sources: soulandbeautymedx.com, Instagram (@lindarankinjects), Yelp, and public press (July 2026). Verify time-sensitive details live on the call. Go be the calm expert. 🤍</p>
+  </footer>
+</div>
