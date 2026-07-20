@@ -4,31 +4,27 @@
 
 // This week's approved content bank. Keyed by lowercase weekday name.
 export const DAILY_POSTS = {
-  monday: `hey besties, happy monday 🍒
-no pressure to have it all together today...
-how's everyone's week actually looking?
-qotd: one thing you've got going on this week you're excited about
-(or one thing you're dreading, we can commiserate too lol)`,
+  monday: `happy monday besties 🍒
+recap time... how was everyone's weekend? give me a highlight or a mess, we don't discriminate.
+and be honest: what's the one thing you actually wanna get to this week?`,
 
-  tuesday: `tuesday and i'm feeling nosy ☕️👀
-we've all got the situationship that dragged on way too long...
-qotd: how long did your longest one last, and what finally made you done?
-(no judgment, i'll go first)`,
+  tuesday: `tuesday and i'm nosy again ☕️👀
+we're doing icks today.
+what's a dating ick that's SO specific but ends it on the spot for you?
+i'll go first in the replies`,
 
   wednesday: `happy hump day 🍒
-midweek reminder to do one little thing just for you today...
-a nice coffee, a walk, finally booking the thing you keep putting off.
-qotd: what've you treated yourself to lately, big or small? need ideas honestly`,
+rich auntie energy isn't about the money... it's about the standards.
+midweek reminder: you're allowed to have a standard and hold it, even when it's inconvenient.
+what's a boundary or standard you're proud of holding lately?`,
 
-  thursday: `thursday and we're keeping it light 💅
-you get ONE petty text to send to every man who wasted your time.
-it sends at midnight, he can't reply.
-qotd: what does yours say?? keep it classy... or don't`,
+  thursday: `thursday, keeping it light 💅
+comfort content check.
+what's the show, movie, or song you put on when you need to feel like yourself again?`,
 
   friday: `it's friday!! 🥂
-give me the highs AND the lows, how'd the week actually treat everyone?
-and please tell me we're all doing something good for ourselves this weekend
-qotd: one win from this week (however small), and what's your weekend looking like?`,
+give me a win from this week, big or tiny (got out of bed on a hard day counts).
+what's everyone getting into this weekend?`,
 };
 
 // Current weekday / time / date in a given timezone (DST-safe via Intl).
