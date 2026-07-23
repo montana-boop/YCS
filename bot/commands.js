@@ -11,7 +11,7 @@ import {
 } from "discord.js";
 import { writeLink, readLink } from "../src/store.js";
 import { botConfig } from "./env.js";
-import { DAILY_POSTS, tzNow, postDay } from "./daily.js";
+import { todaysMessage, postDay } from "./daily.js";
 
 const YCS_BLURPLE = 0x5865f2;
 
@@ -203,16 +203,15 @@ const qotd = {
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
   async execute(interaction) {
     const cfg = botConfig();
-    const { weekday } = tzNow(cfg.dailyTz);
-    if (!DAILY_POSTS[weekday]) {
+    if (!todaysMessage(cfg.dailyTz)) {
       await interaction.reply({
-        content: `nothing scheduled for ${weekday} yet (weekends are off for now).`,
+        content: `nothing scheduled for today.`,
         flags: MessageFlags.Ephemeral,
       });
       return;
     }
     const channelId = cfg.dailyChannelId || cfg.channelId;
-    const sent = await postDay(interaction.client, channelId, weekday, cfg.dailyMention);
+    const sent = await postDay(interaction.client, channelId, cfg.dailyTz, cfg.dailyMention);
     await interaction.reply({
       content: `posted today's qotd 🍒 — [jump](${sent.url})`,
       flags: MessageFlags.Ephemeral,
