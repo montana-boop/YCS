@@ -1,0 +1,512 @@
+<title>Strategy Call Prep — Chelsea / @its_xchels</title>
+<style>
+  :root {
+    /* palette — San Diego coastal-athletic-bride: peach ground, persimmon, eucalyptus, champagne */
+    --peach:      #FDF6F2;
+    --card:       #FFFFFF;
+    --ink:        #221A1C;
+    --ink-soft:   #6A5B5B;
+    --line:       #F0E1D9;
+    --coral:      #E4613E;   /* persimmon — primary energy */
+    --coral-deep: #C24A2A;
+    --sage:       #4E7C64;   /* eucalyptus — the running / whole-person pillar */
+    --sage-bg:    #E7EFE9;
+    --champagne:  #C79A5B;   /* bridal gold */
+    --coral-bg:   #FBEAE2;
+    --amber-bg:   #F7ECDA;
+    --shadow:     0 1px 2px rgba(34,26,28,.04), 0 10px 28px -14px rgba(194,74,42,.20);
+    --radius:     14px;
+    --maxw:       960px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --peach:      #1A1413;
+      --card:       #241C1B;
+      --ink:        #F5EBE6;
+      --ink-soft:   #B7A69F;
+      --line:       #3A2C29;
+      --coral:      #F0805F;
+      --coral-deep: #F79B7F;
+      --sage:       #8FBFA1;
+      --sage-bg:    #24322A;
+      --champagne:  #DDB578;
+      --coral-bg:   #3A241C;
+      --amber-bg:   #3A2E1C;
+      --shadow:     0 1px 2px rgba(0,0,0,.3), 0 12px 32px -16px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="light"] {
+    --peach:#FDF6F2; --card:#FFFFFF; --ink:#221A1C; --ink-soft:#6A5B5B; --line:#F0E1D9;
+    --coral:#E4613E; --coral-deep:#C24A2A; --sage:#4E7C64; --sage-bg:#E7EFE9;
+    --champagne:#C79A5B; --coral-bg:#FBEAE2; --amber-bg:#F7ECDA;
+    --shadow:0 1px 2px rgba(34,26,28,.04),0 10px 28px -14px rgba(194,74,42,.20);
+  }
+  :root[data-theme="dark"] {
+    --peach:#1A1413; --card:#241C1B; --ink:#F5EBE6; --ink-soft:#B7A69F; --line:#3A2C29;
+    --coral:#F0805F; --coral-deep:#F79B7F; --sage:#8FBFA1; --sage-bg:#24322A;
+    --champagne:#DDB578; --coral-bg:#3A241C; --amber-bg:#3A2E1C;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -16px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--peach);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 20px 96px; }
+  .display {
+    font-family: "Didot", "Bodoni 72", "Bodoni MT", "Playfair Display", Georgia, "Times New Roman", serif;
+    letter-spacing: -.005em;
+  }
+
+  /* header */
+  header { padding: 48px 0 26px; border-bottom: 1px solid var(--line); margin-bottom: 6px; }
+  .eyebrow {
+    font-size: 12px; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--coral); font-weight: 700; margin: 0 0 14px;
+  }
+  h1.display {
+    font-size: clamp(34px, 6vw, 54px); line-height: 1.02; margin: 0 0 12px;
+    font-weight: 500; text-wrap: balance;
+  }
+  .sub { font-size: 17px; color: var(--ink-soft); margin: 0; max-width: 60ch; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .pill {
+    font-size: 12.5px; padding: 5px 11px; border-radius: 999px;
+    background: var(--card); border: 1px solid var(--line); color: var(--ink-soft);
+  }
+  .pill b { color: var(--ink); font-weight: 600; }
+
+  /* sections */
+  section { margin-top: 46px; scroll-margin-top: 20px; }
+  h2.display {
+    font-size: 27px; font-weight: 500; margin: 0 0 4px;
+    display: flex; align-items: baseline; gap: 13px;
+  }
+  h2 .num {
+    font-size: 13px; color: var(--coral); font-weight: 700; letter-spacing: .1em;
+    font-family: -apple-system, sans-serif; font-variant-numeric: tabular-nums;
+  }
+  .section-note { color: var(--ink-soft); font-size: 15px; margin: 6px 0 22px; max-width: 70ch; }
+
+  /* cards */
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 24px; box-shadow: var(--shadow); margin-bottom: 16px;
+  }
+  .card h3 { margin: 0 0 12px; font-size: 16px; font-weight: 700; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .grid2 { grid-template-columns: 1fr; } }
+
+  ul.clean { list-style: none; margin: 0; padding: 0; }
+  ul.clean li { position: relative; padding: 8px 0 8px 24px; border-top: 1px solid var(--line); }
+  ul.clean li:first-child { border-top: none; }
+  ul.clean li::before {
+    content: ""; position: absolute; left: 3px; top: 16px;
+    width: 7px; height: 7px; border-radius: 50%; background: var(--coral);
+  }
+  ul.clean li b { font-weight: 600; }
+
+  /* stat tiles — the data story */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 18px 16px; box-shadow: var(--shadow); position: relative; overflow: hidden;
+  }
+  .stat::after {
+    content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--coral);
+  }
+  .stat.win::after { background: var(--sage); }
+  .stat.low::after { background: var(--ink-soft); opacity: .4; }
+  .stat .x {
+    font-family: "Didot","Bodoni 72",Georgia,serif; font-size: 40px; line-height: 1;
+    font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -.02em;
+  }
+  .stat.win .x { color: var(--sage); }
+  .stat.low .x { color: var(--ink-soft); }
+  .stat .lbl { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.4; }
+  .stat .plat { font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; font-weight: 700; color: var(--coral); margin-bottom: 6px; }
+  .stat.win .plat { color: var(--sage); }
+
+  /* callout */
+  .callout {
+    background: linear-gradient(180deg, var(--coral-bg), var(--card));
+    border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 20px 24px; margin-bottom: 16px;
+  }
+  .callout h3 { margin: 0 0 8px; color: var(--coral-deep); font-size: 13px; letter-spacing: .06em; text-transform: uppercase; }
+  .callout p { margin: 0; }
+  .callout.sage { background: linear-gradient(180deg, var(--sage-bg), var(--card)); }
+  .callout.sage h3 { color: var(--sage); }
+
+  /* pillars */
+  .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  @media (max-width: 700px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow); }
+  .pillar .ph { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+  .pillar h3 { margin: 0; font-size: 16px; }
+  .pillar p { margin: 0; font-size: 14px; color: var(--ink-soft); }
+  .badge { font-size: 10.5px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; padding: 3px 9px; border-radius: 6px; white-space: nowrap; }
+  .badge.proven { background: var(--sage-bg); color: var(--sage); }
+  .badge.untapped { background: var(--coral-bg); color: var(--coral-deep); }
+
+  /* weekly grid — the operating system */
+  .tablewrap { overflow-x: auto; }
+  table.week { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 520px; }
+  table.week th, table.week td { text-align: left; padding: 12px 14px; border: 1px solid var(--line); vertical-align: top; }
+  table.week thead th { background: var(--sage-bg); color: var(--sage); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; font-weight: 700; }
+  table.week td.plat { font-weight: 700; background: var(--coral-bg); color: var(--coral-deep); white-space: nowrap; }
+  table.week td b { font-weight: 600; }
+
+  /* agenda timeline */
+  .agenda { margin-top: 8px; }
+  .slot { display: grid; grid-template-columns: 80px 1fr; gap: 18px; padding: 0 0 22px; position: relative; }
+  .slot:not(:last-child)::before { content:""; position:absolute; left: 8px; top: 22px; bottom: -4px; width: 2px; background: var(--line); }
+  .slot .time { position: relative; font-weight: 700; font-size: 13px; color: var(--coral-deep); font-variant-numeric: tabular-nums; padding-left: 24px; }
+  .slot .time::before { content:""; position:absolute; left:2px; top:5px; width:14px; height:14px; border-radius:50%; background: var(--card); border: 2px solid var(--coral); }
+  .slot .body h4 { margin: 0 0 4px; font-size: 15.5px; font-weight: 700; }
+  .slot .body p { margin: 0; color: var(--ink-soft); font-size: 14.5px; }
+  .slot .body .say { margin-top: 8px; font-size: 14px; border-left: 2px solid var(--champagne); padding: 2px 0 2px 12px; color: var(--ink); font-style: italic; }
+
+  /* Q blocks */
+  .qcat { font-weight: 700; font-size: 13px; letter-spacing: .04em; color: var(--coral-deep); text-transform: uppercase; margin: 18px 0 6px; }
+  .qcat:first-child { margin-top: 0; }
+  ol.q { margin: 0; padding-left: 20px; }
+  ol.q li { padding: 5px 0; }
+  ol.q li b { font-weight: 600; }
+
+  /* objection table */
+  table.obj { width: 100%; border-collapse: collapse; font-size: 14.5px; min-width: 480px; }
+  table.obj th, table.obj td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  table.obj th { font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); font-weight: 600; }
+  table.obj td.o { font-weight: 600; width: 36%; }
+
+  /* ideas */
+  ol.ideas { list-style: none; counter-reset: idea; margin: 0; padding: 0; display: grid; gap: 10px; }
+  ol.ideas li { counter-increment: idea; position: relative; padding: 14px 16px 14px 52px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+  ol.ideas li::before { content: counter(idea); position: absolute; left: 14px; top: 14px; width: 26px; height: 26px; display: grid; place-items: center; background: var(--coral); color: #fff; border-radius: 50%; font-size: 13px; font-weight: 700; }
+  ol.ideas .tag { display:inline-block; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; color: var(--sage); margin-top: 4px; }
+
+  /* do/dont */
+  .do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .do-dont { grid-template-columns: 1fr; } }
+  .tag-h { display:inline-block; font-size:11px; letter-spacing:.1em; text-transform:uppercase; font-weight:700; padding:3px 9px; border-radius:6px; margin-bottom:12px; }
+  .tag-h.good { background: var(--sage-bg); color: var(--sage); }
+  .tag-h.bad { background: var(--coral-bg); color: var(--coral-deep); }
+  .do-dont .good-list li::before { background: var(--sage); }
+  .do-dont .bad-list li::before { background: var(--coral); }
+
+  .disclaimer { font-size: 12.5px; color: var(--ink-soft); background: var(--amber-bg); border-radius: 10px; padding: 12px 16px; margin-top: 18px; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 13px; }
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Social Bestie · Strategy Call Prep</p>
+    <h1 class="display">Chelsea &amp; the whole-person brand</h1>
+    <p class="sub">Your run sheet for the strategy call. She's already creating — the job today isn't to fix her, it's to show her what the data already proves and hand her a rhythm she can actually keep.</p>
+    <div class="meta-row">
+      <span class="pill"><b>Who</b> &nbsp;Chelsea — nurse injector, San Diego</span>
+      <span class="pill"><b>IG</b> &nbsp;injector identity · comedy-forward</span>
+      <span class="pill"><b>TikTok</b> &nbsp;@its_xchels · whole person</span>
+      <span class="pill"><b>Call</b> &nbsp;~45–60 min · content strategy</span>
+    </div>
+  </header>
+
+  <!-- SNAPSHOT -->
+  <section id="snapshot">
+    <h2 class="display"><span class="num">01</span> The 60-second snapshot</h2>
+    <p class="section-note">If you remember five things walking in, remember these.</p>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Her audience follows <em>her</em>, not the job.</b> Every time she shows up as a full person — bride, runner, someone with ADHD, someone healing her skin — she 3–4x's her ceiling. That's the whole strategy in one line.</li>
+        <li><b>One personal brand, two tones.</b> Instagram = "Chelsea the injector" (comedy). TikTok = "Chelsea the whole person" (carousels, vulnerable). Not business vs. personal — same brand, two voices.</li>
+        <li><b>She's not broken, she's un-systemized.</b> She's been doing the hard part (creating) with no container. Don't hand her a strategy essay — hand her a rhythm. Simplicity <em>is</em> the product.</li>
+        <li><b>Design around the constraints, don't fight them.</b> ADHD → fewer decisions. Busy → batchable. Camera-shy → formats that need zero glam. Every recommendation respects all three.</li>
+        <li><b>The camera roll is the goldmine.</b> Her best-ever format (wedding carousels) reuses photos she already has. Find out how many are still unposted — that's months of proven content sitting on her phone.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- THE DATA -->
+  <section id="data">
+    <h2 class="display"><span class="num">02</span> Lead with the data</h2>
+    <p class="section-note">Open here — numbers before opinions. She needs to feel seen by her own results before she'll trust a plan. These are outlier multipliers (how far each post beat her baseline).</p>
+    <div class="stats">
+      <div class="stat win">
+        <div class="plat">TikTok · win</div>
+        <div class="x">16.9×</div>
+        <div class="lbl">Wedding details carousel (Pt 2) — her #1 ever</div>
+      </div>
+      <div class="stat win">
+        <div class="plat">TikTok · win</div>
+        <div class="x">8.7×</div>
+        <div class="lbl">"Walking away from typical nursing" — burnout / vulnerability</div>
+      </div>
+      <div class="stat">
+        <div class="plat">Instagram · best</div>
+        <div class="x">5.1×</div>
+        <div class="lbl">Bestie / wedding-adjacent reel — her top IG post</div>
+      </div>
+      <div class="stat low">
+        <div class="plat">Instagram · joke</div>
+        <div class="x">2.6×</div>
+        <div class="lbl">Botox tire-change joke — best pure injector gag</div>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>The gap that is the strategy</h3>
+      <p><b>Whole-person, vulnerable content (8.7–16.9×) runs 3–4× above her injector-with-jokes ceiling (~2.6×).</b> Say it plainly: "Your two best posts ever are the wedding carousels. Your burnout post beat your best injector joke by more than 3×. That's not luck — that's your audience telling you who they follow."</p>
+    </div>
+  </section>
+
+  <!-- PLATFORM SPLIT -->
+  <section id="split">
+    <h2 class="display"><span class="num">03</span> Reframe the two platforms</h2>
+    <p class="section-note">Not two accounts doing different jobs — one brand in two tones. The unlock is that the winning TikTok formats have barely been tried on Instagram.</p>
+    <div class="grid2">
+      <div class="card">
+        <h3>Instagram — "Chelsea the injector"</h3>
+        <ul class="clean">
+          <li>Comedy-forward, tied to the job (trunk gag, syringe prop)</li>
+          <li>Skit-driven, personality-with-a-punchline</li>
+          <li><b>Missing:</b> whole-person content — personal carousels barely tested here</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>TikTok — "Chelsea the whole person"</h3>
+        <ul class="clean">
+          <li>Carousel-driven, more vulnerable and personal</li>
+          <li>Wedding, burnout, ADHD, skin journey all overperform</li>
+          <li><b>Winning here → cross-pollinate to Instagram</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout sage">
+      <h3>The one move</h3>
+      <p>Bring the wedding-carousel format — crushing it on TikTok, nearly untried on IG — over to Instagram. Same photos, new audience.</p>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section id="pillars">
+    <h2 class="display"><span class="num">04</span> Four content pillars</h2>
+    <p class="section-note">The spine of everything. Two proven, two barely-tapped. She never has to invent a topic — she picks a pillar.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="ph"><h3>Wedding story series</h3><span class="badge proven">Proven · #1</span></div>
+        <p>Carousels. Zero filming, reuses existing photos. Still has material to mine.</p>
+      </div>
+      <div class="pillar">
+        <div class="ph"><h3>Injector personality / comedy</h3><span class="badge proven">Proven · IG</span></div>
+        <p>Skits with a prop or costume gag. Her established Instagram winner.</p>
+      </div>
+      <div class="pillar">
+        <div class="ph"><h3>Running + nurse-life balance</h3><span class="badge untapped">Untapped</span></div>
+        <p>Her real passion, and no one in her niche owns it. Instant differentiator.</p>
+      </div>
+      <div class="pillar">
+        <div class="ph"><h3>Vulnerability / relatable struggle</h3><span class="badge untapped">Barely tested on IG</span></div>
+        <p>Burnout, ADHD, skin journey. Proven on TikTok — bring it to Instagram.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE SYSTEM -->
+  <section id="system">
+    <h2 class="display"><span class="num">05</span> Chelsea's content operating system</h2>
+    <p class="section-note">This is the thing to walk her through and hand her at the end of the call. It's not an app and it's not a training program — it's a simple weekly rhythm plus one batch day a month. That's the whole "system."</p>
+    <div class="card">
+      <h3>The weekly rhythm — fixed content <em>types</em>, not fixed topics</h3>
+      <p class="section-note" style="margin:0 0 14px;">Fixing the <em>format</em> per platform kills decision fatigue (the ADHD tax). She's never staring at a blank calendar wondering what to make — the format is already decided, she just picks the pillar.</p>
+      <div class="tablewrap">
+        <table class="week">
+          <thead>
+            <tr><th>Platform</th><th>Default format</th><th>Pull from these pillars</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="plat">TikTok</td>
+              <td><b>Carousels</b> (static photos, no filming)</td>
+              <td>Wedding · Burnout/ADHD · Running · Skin journey</td>
+            </tr>
+            <tr>
+              <td class="plat">Instagram</td>
+              <td><b>Comedy skits</b> + 1 crossover carousel / week</td>
+              <td>Injector personality + one personal-life carousel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="grid2">
+      <div class="card">
+        <h3>One batch day a month</h3>
+        <ul class="clean">
+          <li>Film <b>8–10 skits</b> in 2–3 outfits in a single sitting → weeks of IG covered</li>
+          <li>Separately, pull photos for <b>2–3 carousels</b></li>
+          <li>Solves consistency <em>and</em> "I'm not camera-ready" in one move — she's only on camera when she's already glam</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Lowest-friction formats to lean on</h3>
+        <ul class="clean">
+          <li><b>Carousels</b> — static photos, no filming at all</li>
+          <li><b>Prop / costume skits</b> — the trunk or syringe gag she already wins with</li>
+          <li><b>Voiceover-over-text</b> — no live talking-head needed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>How to hand it over</h3>
+      <p>Don't present it as strategy — present it as relief. "You don't decide what to post anymore. TikTok day = a carousel. Instagram = a skit. Once a month we batch, and you're covered. That's it."</p>
+    </div>
+  </section>
+
+  <!-- CALL FLOW -->
+  <section id="flow">
+    <h2 class="display"><span class="num">06</span> The call flow</h2>
+    <p class="section-note">A loose structure, not a script. Trust → validation → plan → one commitment. Keep the plan simple out loud; every time you're tempted to add nuance, cut instead.</p>
+    <div class="card agenda">
+      <div class="slot">
+        <div class="time">0–5 min</div>
+        <div class="body">
+          <h4>Open with her win</h4>
+          <p>Lead with the numbers, not advice. Make her feel seen by her own data first.</p>
+          <p class="say">"Your two best posts ever are the wedding carousels — 16.9 and 16.5×. Your burnout post beat your best injector joke by more than 3×. That gap is the whole conversation today."</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">5–10 min</div>
+        <div class="body">
+          <h4>Validate the pain points</h4>
+          <p>Name each one as normal, not a flaw, before you solve it.</p>
+          <p class="say">"Consistency is a systems problem, not a discipline problem — especially on 12-hour shifts. And we're going to build this around the ADHD, not pretend it's not there. Fewer decisions, not more."</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">10–20 min</div>
+        <div class="body">
+          <h4>Reframe the split + present the 4 pillars</h4>
+          <p>One brand, two tones. Then the pillars as her menu — she picks, never invents.</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">20–35 min</div>
+        <div class="body">
+          <h4>Walk her through the operating system</h4>
+          <p>The weekly rhythm + monthly batch day. Keep it to one screen. Sell it as relief, not strategy.</p>
+        </div>
+      </div>
+      <div class="slot">
+        <div class="time">35–45 min</div>
+        <div class="body">
+          <h4>Ask the money question, then close on ONE action</h4>
+          <p>Get the camera-roll answer. Then pick the single easiest win and book the batch day before you hang up.</p>
+          <p class="say">"This week: post Wedding Details Part 3 — you probably already have the photos. And let's put your batch day on the calendar right now."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUESTIONS -->
+  <section id="questions">
+    <h2 class="display"><span class="num">07</span> Questions to have ready</h2>
+    <p class="section-note">Pick a handful, follow her thread. The <b>bolded</b> one is the must-ask of the whole call.</p>
+    <div class="card">
+      <p class="qcat">The money question</p>
+      <ol class="q">
+        <li><b>"How much unposted wedding content and how many photos are actually sitting on your phone right now?"</b> — this is her single biggest proven opportunity. Quantify it live; don't let the call end without an answer.</li>
+      </ol>
+      <p class="qcat">Capacity &amp; rhythm</p>
+      <ol class="q">
+        <li>"When a busy stretch of shifts hits, what's the first thing that falls off? Filming, or posting what you've already got?"</li>
+        <li>"If you never had to decide <em>what</em> to post again — just the format was picked for you — would that feel like relief or like a cage?"</li>
+        <li>"Where do you actually film best — home, the medspa, on a run?"</li>
+      </ol>
+      <p class="qcat">The untapped pillar</p>
+      <ol class="q">
+        <li>"How do you feel about putting running on the account? It's your passion and literally no other injector owns it."</li>
+        <li>"What's the honest relationship between running and the ADHD / the shifts? That tension <em>is</em> the content."</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- OBJECTIONS -->
+  <section id="objections">
+    <h2 class="display"><span class="num">08</span> If she pushes back</h2>
+    <p class="section-note">Acknowledge, reframe, redirect — never argue. She knows her audience; you know the pattern in the data.</p>
+    <div class="card tablewrap">
+      <table class="obj">
+        <thead><tr><th>She might say…</th><th>Your reframe</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="o">"Running feels off-brand / random."</td>
+            <td>"It's the opposite — it's your differentiator. Nobody in your injector niche owns running. It's how you stop being 'an injector account' and become <em>Chelsea's</em> account. Plus it's built-in ADHD and stress-management content."</td>
+          </tr>
+          <tr>
+            <td class="o">"I don't have time to batch a whole day."</td>
+            <td>"That's exactly why we batch. One focused sitting replaces the daily 'ugh what do I post' that's actually eating your time. It's less total time, just front-loaded."</td>
+          </tr>
+          <tr>
+            <td class="o">"Carousels feel low-effort / lazy."</td>
+            <td>"They're your single best-performing format. Your audience and the algorithm disagree with the 'lazy' feeling. Low effort for you plus high performance is literally the goal."</td>
+          </tr>
+          <tr>
+            <td class="o">"I don't always look cute enough to post."</td>
+            <td>"Then you never have to be on camera to post. Carousels and voiceover-over-text carry the whole week. Camera only happens on batch day, when you're already ready."</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- IDEAS -->
+  <section id="ideas">
+    <h2 class="display"><span class="num">09</span> Five ideas in your back pocket</h2>
+    <p class="section-note">Ready to pitch if she wants something concrete to picture. #1 is the "post it this week" pick.</p>
+    <ol class="ideas">
+      <li><b>"Wedding details I'm so glad we chose, Part 3"</b><br><span class="tag">TikTok carousel · proven format · ready now</span></li>
+      <li><b>"What being a nurse taught me about planning my own wedding"</b><br><span class="tag">Instagram carousel · cross-pollinated format</span></li>
+      <li><b>"POV: married to an aesthetic nurse who 'just wants to try something' on your face"</b><br><span class="tag">Instagram comedy skit</span></li>
+      <li><b>"Why I almost quit nursing and what running taught me instead"</b><br><span class="tag">TikTok vlog / carousel · vulnerability + running</span></li>
+      <li><b>"Training for a half marathon on 12-hour nurse shifts"</b><br><span class="tag">TikTok day-in-the-life · running pillar</span></li>
+    </ol>
+  </section>
+
+  <!-- DO / DONT -->
+  <section id="dodont">
+    <h2 class="display"><span class="num">10</span> Do &amp; don't</h2>
+    <div class="do-dont">
+      <div class="card">
+        <span class="tag-h good">Do</span>
+        <ul class="clean good-list">
+          <li>Lead with the data, then feelings, then plan.</li>
+          <li>Validate ADHD / inconsistency / camera fatigue as normal.</li>
+          <li>Keep the plan to one screen: 1 calendar, 4 pillars, 1 batch day.</li>
+          <li>Get the camera-roll number.</li>
+          <li>Leave with one booked action (Part 3 + batch day).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag-h bad">Don't</span>
+        <ul class="clean bad-list">
+          <li>Don't hand her a complex strategy doc.</li>
+          <li>Don't add nuance when in doubt — cut it.</li>
+          <li>Don't imply her current content is bad — it's un-systemized.</li>
+          <li>Don't assign four next steps. Assign one.</li>
+          <li>Don't let it end without the camera-roll answer.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Prepared for your strategy call with Chelsea (@its_xchels). Built from the top-10 outlier analysis across both platforms, July 2026. Numbers are outlier multipliers vs. her own baseline — confirm anything time-sensitive live. Go be the calm one. 🧡</p>
+  </footer>
+</div>
