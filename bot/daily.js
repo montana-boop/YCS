@@ -56,6 +56,48 @@ what are we doing to actually rest today? (doomscrolling doesn't count, sorry)`,
 sunday scaries or sunday peace... which are we today?
 and one little thing you're doing to set up next week?`,
   },
+
+  // ---- week C ----
+  {
+    monday: `happy monday besties 🍒
+pick a word for your week. just one.
+what's your one-word intention for the next 7 days?`,
+    tuesday: `tuesday, storytime ☕️👀
+best OR worst first date you've ever been on. we need details.`,
+    wednesday: `happy hump day 🍒
+you're not the same person you were a year ago, thank god.
+what's something you used to tolerate that you'd never accept now?`,
+    thursday: `thursday 💅
+gas each other up day.
+reply with something you're low-key proud of and we'll hype you in the replies. no win too small.`,
+    friday: `it's friday!! 🥂
+what made you laugh this week?
+and what's the plan (or the beautiful lack of one) this weekend?`,
+    saturday: `saturday 🤍
+what's a small thing that made this week feel a little softer?`,
+    sunday: `sunday reset 🧺
+brain dump: what's one thing you're taking OFF your plate this week?`,
+  },
+
+  // ---- week D ----
+  {
+    monday: `morning besties ☀️
+monday but make it gentle. what's the first nice thing you're doing for yourself today, even if it's just coffee in peace?`,
+    tuesday: `tuesday and we're being a little delulu ☕️👀
+manifest it: describe your dream "boringly healthy" relationship in one sentence. speak it into existence.`,
+    wednesday: `happy hump day 🍒
+"no" is a full sentence.
+what's something you said no to recently that you're proud of?`,
+    thursday: `thursday 💅
+put the group onto something you're obsessed with right now. book, show, product, snack, anything. we're taking notes.`,
+    friday: `it's friday!! 🥂
+finish the sentence: this week i'm proud that i ______.
+and what's the weekend looking like?`,
+    saturday: `saturday soft life 🤍
+permission granted to do nothing productive today. what's your ideal do-nothing saturday?`,
+    sunday: `sunday reset 🧺
+gratitude check: name one person or thing that made this week better.`,
+  },
 ];
 
 // The Monday that WEEKS[0] starts on. Rotation advances every Monday.
