@@ -103,6 +103,26 @@ gratitude check: name one person or thing that made this week better.`,
 // The Monday that WEEKS[0] starts on. Rotation advances every Monday.
 const ANCHOR_UTC = Date.UTC(2026, 6, 13); // 2026-07-13 (a Monday)
 
+// Exact-date overrides: approved one-off questions pinned to a specific date.
+// These take precedence over the weekly rotation for that day. Body only —
+// the scheduler appends the @everyone mention automatically.
+const OVERRIDES = {
+  "2026-08-01": `weekend spicy 🌶️
+what finally made you decide a man was NOT worth "doing the work" for?`,
+  "2026-08-03": `fill in the blank:
+"i thought i was so mature at 22, but really i was ______"`,
+  "2026-08-04": `hot take 🔥
+is romance actually real... or just something we were sold?
+defend it, i want the essays.`,
+  "2026-08-05": `this or that 👀
+told a friend the hard truth vs. bit your tongue... which do you regret more?`,
+  "2026-08-06": `rank them 💀
+worst thing to hear on a first date:
+"what's your body count" / "i'm not like other guys" / "you're so mature for your age"`,
+  "2026-08-08": `weekend deep cut 🤍
+when did your body start feeling like YOURS again... and after what?`,
+};
+
 // Current weekday / time / date in a timezone (DST-safe via Intl).
 export function tzNow(tz) {
   const parts = new Intl.DateTimeFormat("en-US", {
@@ -133,9 +153,11 @@ export function weekIndexForDate(dateStr) {
   return ((Math.floor(days / 7) % n) + n) % n;
 }
 
-// Today's message text (or null) for a timezone.
+// Today's message text (or null) for a timezone. Pinned date overrides win;
+// otherwise fall back to the weekly rotation.
 export function todaysMessage(tz) {
   const { weekday, date } = tzNow(tz);
+  if (OVERRIDES[date]) return OVERRIDES[date];
   return WEEKS[weekIndexForDate(date)][weekday] || null;
 }
 
