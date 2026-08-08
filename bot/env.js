@@ -9,9 +9,9 @@ export function botConfig() {
     clientId: process.env.DISCORD_CLIENT_ID || "", // application ID
     guildId: process.env.DISCORD_GUILD_ID || "",
     channelId: process.env.DISCORD_CHANNEL_ID || "", // default target channel
-    // Channel the stable-link invites point at. Falls back to channelId.
-    // Use a channel every new member can see (e.g. #welcome / rules).
-    inviteChannelId: process.env.DISCORD_INVITE_CHANNEL_ID || "",
+    // Channel the stable-link invites point at — pinned to #introduce-yourself
+    // so new members land right where they introduce themselves.
+    inviteChannelId: "1496569287392100636",
     // How often (hours) to mint a fresh invite behind the stable link. 0 = off.
     refreshHours: Number(process.env.DISCORD_INVITE_REFRESH_HOURS || 6),
     port: Number(process.env.PORT || 3000),
@@ -24,7 +24,8 @@ export function botConfig() {
       process.env.DISCORD_DAILY_MENTION !== undefined
         ? process.env.DISCORD_DAILY_MENTION
         : "@everyone",
-    welcomeChannelId: process.env.DISCORD_WELCOME_CHANNEL_ID || "",
+    // Pinned to #introduce-yourself so new besties are greeted where they intro.
+    welcomeChannelId: "1496569287392100636",
     welcomeMessage:
       process.env.DISCORD_WELCOME_MESSAGE ||
       "welcome to single besties, {user} 💌 you're officially in the group chat — pull up a chair and introduce yourself, bestie ✨",
