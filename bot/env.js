@@ -19,6 +19,9 @@ export function botConfig() {
     dailyChannelId: process.env.DISCORD_DAILY_CHANNEL_ID || "", // falls back to channelId
     dailyTime: process.env.DISCORD_DAILY_TIME || "09:00", // 24h HH:MM in dailyTz
     dailyTz: process.env.DISCORD_DAILY_TZ || "America/New_York",
+    // Daily Wordle nudge in #daily-games.
+    gamesChannelName: process.env.DISCORD_GAMES_CHANNEL || "daily-games",
+    gamesTime: process.env.DISCORD_GAMES_TIME || "09:30",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined

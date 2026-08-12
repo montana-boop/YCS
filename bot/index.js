@@ -10,6 +10,8 @@ import { botConfig, requireBotEnv } from "./env.js";
 import { startAutoRefresh } from "./refresh.js";
 import { startServer } from "./server.js";
 import { startDailyScheduler } from "./daily.js";
+import { startGamesScheduler } from "./games.js";
+import { handleRoleSelect } from "./roles.js";
 
 const cfg = botConfig();
 try {
@@ -53,10 +55,28 @@ client.once(Events.ClientReady, async (c) => {
 
   // Post the daily question of the day on schedule.
   startDailyScheduler(client, cfg);
+
+  // Daily Wordle nudge in #daily-games.
+  startGamesScheduler(client, cfg);
 });
 
-// Slash command dispatch.
+// Slash command + role-menu dispatch.
 client.on(Events.InteractionCreate, async (interaction) => {
+  // Role menu (#get-your-roles) select interactions.
+  if (interaction.isStringSelectMenu() && interaction.customId.startsWith("roles:")) {
+    try {
+      await handleRoleSelect(interaction);
+    } catch (err) {
+      console.error("Role select error:", err);
+      if (!interaction.replied) {
+        await interaction
+          .reply({ content: `⚠️ Couldn't update your roles: ${err.message}`, flags: 64 })
+          .catch(() => {});
+      }
+    }
+    return;
+  }
+
   if (!interaction.isChatInputCommand()) return;
   const command = commandMap.get(interaction.commandName);
   if (!command) return;
