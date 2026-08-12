@@ -20,17 +20,6 @@ export const ROLE_GROUPS = {
     mentionable: false,
     options: [{ name: "she/her" }, { name: "they/them" }, { name: "he/him" }, { name: "ask me" }],
   },
-  dating: {
-    label: "Dating preference",
-    placeholder: "who you're open to (or not)",
-    mentionable: false,
-    options: [
-      { name: "dating men" },
-      { name: "dating women" },
-      { name: "dating everyone" },
-      { name: "here for the friendships" },
-    ],
-  },
   age: {
     label: "Age",
     placeholder: "your age range",
