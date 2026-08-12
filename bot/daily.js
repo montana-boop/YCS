@@ -107,20 +107,32 @@ const ANCHOR_UTC = Date.UTC(2026, 6, 13); // 2026-07-13 (a Monday)
 // These take precedence over the weekly rotation for that day. Body only —
 // the scheduler appends the @everyone mention automatically.
 const OVERRIDES = {
-  "2026-08-01": `weekend spicy 🌶️
-what finally made you decide a man was NOT worth "doing the work" for?`,
-  "2026-08-03": `fill in the blank:
-"i thought i was so mature at 22, but really i was ______"`,
-  "2026-08-04": `hot take 🔥
-is romance actually real... or just something we were sold?
-defend it, i want the essays.`,
-  "2026-08-05": `this or that 👀
-told a friend the hard truth vs. bit your tongue... which do you regret more?`,
-  "2026-08-06": `rank them 💀
-worst thing to hear on a first date:
-"what's your body count" / "i'm not like other guys" / "you're so mature for your age"`,
-  "2026-08-08": `weekend deep cut 🤍
-when did your body start feeling like YOURS again... and after what?`,
+  "2026-08-13": `are you the "only single friend" in your group?
+how do you actually feel about it... honestly? 🤍`,
+  "2026-08-14": `brag on yourself 🥂
+what's a win from this week, big or tiny?
+(bonus points if it's got nothing to do with a man)`,
+  "2026-08-15": `saturday, keeping it easy 🤍
+what's your ideal saturday... brunch? hiking? cozy show and a snack?
+what's your vibe?`,
+  "2026-08-16": `when did being on your own start to feel like relief instead of loneliness?
+what shifted? 🧺`,
+  "2026-08-17": `real talk... a lot of us are here for the friendships more than the dating.
+what's the hardest part about making friends as an adult?`,
+  "2026-08-18": `tuesday and we're being unserious 🎬
+describe your current love life as a movie title or genre... go`,
+  "2026-08-19": `show us your chosen family 🤍
+a pet, a best friend, whoever's YOUR person...
+drop a pic or tell us about them`,
+  "2026-08-20": `the line a family member ALWAYS hits about you being single...
+and what you wish you could say back 💬`,
+  "2026-08-21": `something unhealthy you walked away from this year:
+a job, a person, an old version of you? 🥂`,
+  "2026-08-22": `weekend check-in 🥂
+what's one win from the past week, and how are you spending the weekend?`,
+  "2026-08-23": `sunday 🤍
+let's manifest a good week: what's one thing you're looking forward to
+(or want to make happen) this week?`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
