@@ -12,6 +12,7 @@ import {
 import { writeLink, readLink } from "../src/store.js";
 import { botConfig } from "./env.js";
 import { todaysMessage, postDay } from "./daily.js";
+import { ensureRoles, buildMenus } from "./roles.js";
 
 const YCS_BLURPLE = 0x5865f2;
 
@@ -219,5 +220,25 @@ const qotd = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link, qotd];
+// --- /setup-roles -----------------------------------------------------------
+// Creates any missing self-assign roles and posts the role menu in this channel.
+const setupRoles = {
+  data: new SlashCommandBuilder()
+    .setName("setup-roles")
+    .setDescription("Post the self-assign role menu in this channel.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  async execute(interaction) {
+    await interaction.reply({
+      content: "setting up roles + posting the menu… 🍒",
+      flags: MessageFlags.Ephemeral,
+    });
+    await ensureRoles(interaction.guild);
+    for (const message of buildMenus()) {
+      await interaction.channel.send(message);
+    }
+    await interaction.editReply("✅ role menu posted — members can pick their roles now.");
+  },
+};
+
+export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));
