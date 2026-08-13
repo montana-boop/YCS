@@ -22,6 +22,10 @@ export function botConfig() {
     // Daily Wordle nudge in #daily-games.
     gamesChannelName: process.env.DISCORD_GAMES_CHANNEL || "daily-games",
     gamesTime: process.env.DISCORD_GAMES_TIME || "09:30",
+    // Community events (times in dailyTz).
+    eventsChannelName: process.env.DISCORD_EVENTS_CHANNEL || "events-chat",
+    coworkingTime: process.env.DISCORD_COWORKING_TIME || "12:00",
+    movieVoteTime: process.env.DISCORD_MOVIE_VOTE_TIME || "17:00",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined

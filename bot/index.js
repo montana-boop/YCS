@@ -12,6 +12,7 @@ import { startServer } from "./server.js";
 import { startDailyScheduler } from "./daily.js";
 import { startGamesScheduler } from "./games.js";
 import { handleRoleSelect } from "./roles.js";
+import { startEventScheduler, startCoworkingReminder, startMovieVote } from "./events.js";
 
 const cfg = botConfig();
 try {
@@ -58,6 +59,11 @@ client.once(Events.ClientReady, async (c) => {
 
   // Daily Wordle nudge in #daily-games.
   startGamesScheduler(client, cfg);
+
+  // Community events: weekly Movie Night event + coworking + movie-vote posts.
+  startEventScheduler(client, cfg);
+  startCoworkingReminder(client, cfg);
+  startMovieVote(client, cfg);
 });
 
 // Slash command + role-menu dispatch.
