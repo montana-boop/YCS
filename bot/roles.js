@@ -125,6 +125,10 @@ export async function handleRoleSelect(interaction) {
   const group = interaction.customId.split(":")[1];
   const g = ROLE_GROUPS[group];
   if (!g) return;
+  // Acknowledge immediately (within Discord's 3s window) — the role changes
+  // below make API calls that can take longer.
+  await interaction.deferReply({ flags: MessageFlags.Ephemeral });
+
   const { guild, member } = interaction;
   const selected = new Set(interaction.values);
   const add = [];
@@ -138,8 +142,5 @@ export async function handleRoleSelect(interaction) {
   }
   if (add.length) await member.roles.add(add, "self-assign via role menu");
   if (remove.length) await member.roles.remove(remove, "self-assign via role menu");
-  await interaction.reply({
-    content: `updated your ${g.label.toLowerCase()} 🍒`,
-    flags: MessageFlags.Ephemeral,
-  });
+  await interaction.editReply(`updated your ${g.label.toLowerCase()} 🍒`);
 }

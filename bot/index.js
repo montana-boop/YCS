@@ -74,10 +74,11 @@ client.on(Events.InteractionCreate, async (interaction) => {
       await handleRoleSelect(interaction);
     } catch (err) {
       console.error("Role select error:", err);
-      if (!interaction.replied) {
-        await interaction
-          .reply({ content: `⚠️ Couldn't update your roles: ${err.message}`, flags: 64 })
-          .catch(() => {});
+      const msg = `⚠️ Couldn't update your roles: ${err.message}`;
+      if (interaction.deferred || interaction.replied) {
+        await interaction.editReply(msg).catch(() => {});
+      } else {
+        await interaction.reply({ content: msg, flags: 64 }).catch(() => {});
       }
     }
     return;
