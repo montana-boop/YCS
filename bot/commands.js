@@ -240,5 +240,50 @@ const setupRoles = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles];
+// --- /launch-polls ----------------------------------------------------------
+// Posts the hangout + game-night community polls in the current channel.
+// Uses native Discord polls; falls back to an emoji-reaction poll if needed.
+async function postPoll(channel, question, options) {
+  try {
+    await channel.send({
+      poll: {
+        question: { text: question },
+        answers: options.map((text) => ({ text })),
+        allowMultiselect: false,
+        duration: 72, // hours (3 days)
+      },
+    });
+  } catch {
+    const nums = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣"];
+    const body =
+      `${question}\n\n` +
+      options.map((o, i) => `${nums[i]} ${o}`).join("\n") +
+      `\n\n(react to vote 🍒)`;
+    const msg = await channel.send({ content: body, allowedMentions: { parse: [] } });
+    for (let i = 0; i < options.length; i++) await msg.react(nums[i]);
+  }
+}
+
+const launchPolls = {
+  data: new SlashCommandBuilder()
+    .setName("launch-polls")
+    .setDescription("Post the hangout + game-night polls in this channel.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  async execute(interaction) {
+    await interaction.reply({ content: "posting the polls… 🍒", flags: MessageFlags.Ephemeral });
+    await postPoll(
+      interaction.channel,
+      "🫶 when should our weekly hangout be? (starts next week!)",
+      ["thursday 6pm ET", "friday 7pm ET", "saturday 3pm ET", "sunday 4pm ET"]
+    );
+    await postPoll(
+      interaction.channel,
+      "🎮 virtual game night — how often should we do it?",
+      ["once a week", "every other week", "once a month"]
+    );
+    await interaction.editReply("✅ both polls are up — besties can vote now 🍒");
+  },
+};
+
+export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));
