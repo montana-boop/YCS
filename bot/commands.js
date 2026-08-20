@@ -229,14 +229,28 @@ const setupRoles = {
     .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
   async execute(interaction) {
     await interaction.reply({
-      content: "setting up roles + posting the menu… 🍒",
+      content: "refreshing roles + the menu… 🍒",
       flags: MessageFlags.Ephemeral,
     });
     await ensureRoles(interaction.guild);
+    // Remove any previous role-menu messages the bot posted here, so re-running
+    // refreshes the picker in place instead of leaving a duplicate.
+    try {
+      const recent = await interaction.channel.messages.fetch({ limit: 50 });
+      const mine = recent.filter(
+        (m) =>
+          m.author.id === interaction.client.user.id &&
+          ((m.components?.length ?? 0) > 0 ||
+            m.embeds?.some((e) => e.title?.toLowerCase().includes("get your roles")))
+      );
+      for (const m of mine.values()) await m.delete().catch(() => {});
+    } catch {
+      /* ignore — worst case a stale menu remains */
+    }
     for (const message of buildMenus()) {
       await interaction.channel.send(message);
     }
-    await interaction.editReply("✅ role menu posted — members can pick their roles now.");
+    await interaction.editReply("✅ menu refreshed — old picker removed, updated one posted.");
   },
 };
 

@@ -55,6 +55,7 @@ export const ROLE_GROUPS = {
       { name: "fitness" },
       { name: "books" },
       { name: "food & cooking" },
+      { name: "journal club" },
     ],
   },
   events: {
