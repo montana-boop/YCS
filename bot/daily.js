@@ -107,32 +107,33 @@ const ANCHOR_UTC = Date.UTC(2026, 6, 13); // 2026-07-13 (a Monday)
 // These take precedence over the weekly rotation for that day. Body only —
 // the scheduler appends the @everyone mention automatically.
 const OVERRIDES = {
-  "2026-08-13": `are you the "only single friend" in your group?
-how do you actually feel about it... honestly? 🤍`,
-  "2026-08-14": `brag on yourself 🥂
-what's a win from this week, big or tiny?
-(bonus points if it's got nothing to do with a man)`,
-  "2026-08-15": `saturday, keeping it easy 🤍
-what's your ideal saturday... brunch? hiking? cozy show and a snack?
-what's your vibe?`,
-  "2026-08-16": `when did being on your own start to feel like relief instead of loneliness?
-what shifted? 🧺`,
-  "2026-08-17": `real talk... a lot of us are here for the friendships more than the dating.
-what's the hardest part about making friends as an adult?`,
-  "2026-08-18": `tuesday and we're being unserious 🎬
-describe your current love life as a movie title or genre... go`,
-  "2026-08-19": `show us your chosen family 🤍
-a pet, a best friend, whoever's YOUR person...
-drop a pic or tell us about them`,
-  "2026-08-20": `the line a family member ALWAYS hits about you being single...
-and what you wish you could say back 💬`,
-  "2026-08-21": `something unhealthy you walked away from this year:
-a job, a person, an old version of you? 🥂`,
-  "2026-08-22": `weekend check-in 🥂
-what's one win from the past week, and how are you spending the weekend?`,
-  "2026-08-23": `sunday 🤍
-let's manifest a good week: what's one thing you're looking forward to
-(or want to make happen) this week?`,
+  "2026-08-26": `happy hump day 🍒
+we talk about green flags in dating but not friendship...
+what's a green flag you look for in a FRIEND now?`,
+  "2026-08-27": `thursday, just for fun 💅
+what's a weirdly specific thing that instantly makes you like someone?`,
+  "2026-08-28": `it's friday 🥂
+what's a win this week you're proud of but would never post on instagram?
+the quiet ones count most.`,
+  "2026-08-29": `saturday soft life 🤍
+what's the comfort meal you make just for YOU... the one that feels like a hug?`,
+  "2026-08-30": `sunday check-in 🧺
+what's been draining your energy lately... and what's been refilling it?`,
+  "2026-08-31": `happy monday besties 🍒
+can you believe it's the last day of august...
+what's a favorite summer memory or moment you're really happy you had?`,
+  "2026-09-01": `new month, new page 🍒 (how is it september?!)
+what's one thing you want to do JUST for you this month?`,
+  "2026-09-02": `hump day 🤍
+a solo thing you did recently that you were nervous about but SO glad you did?`,
+  "2026-09-03": `thursday, unpopular opinions 👀
+give us your most controversial (but harmless) take — dating, life, whatever. we're listening.`,
+  "2026-09-04": `it's friday 🥂
+biggest small joy of your week? (the coffee, the text, the perfect parking spot)`,
+  "2026-09-05": `saturday daydream ✈️
+if you could teleport anywhere just for the weekend, where are you going... and who (if anyone) are you bringing?`,
+  "2026-09-06": `sunday reset 🍂
+we're easing into fall... what are you ready to leave behind this season?`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
