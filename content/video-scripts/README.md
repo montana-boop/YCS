@@ -25,7 +25,9 @@ Format reference: `hook · 0:00` / `body · 1:00` / bold section heads / `close 
 | 4 | BBL | `dr-mara-september-2026/04-bbl.md` |
 | 5 | Clear and Brilliant | `dr-mara-september-2026/05-clear-and-brilliant.md` |
 
-Voice/format reference: the August 2026 scripts (Sunscreen, Dangerous Skin Signs, Sunburn).
+Voice/format reference: the August 2026 scripts, revised for an easier read. Shorter sentences,
+plainer language, and each hook opens with "Hi everyone, I'm Dr. Mara Weinstein, board-certified
+dermatologist."
 Structure: `hook · 0:00` (3 paragraphs) / `body` / `N · Section · time` (setup → mechanism →
 patient story → rule → transition) / summary paragraph / `close · 8:45` with a single
 related-video handoff.

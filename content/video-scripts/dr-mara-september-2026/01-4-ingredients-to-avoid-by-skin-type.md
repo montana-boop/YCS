@@ -1,6 +1,6 @@
 # 4 INGREDIENTS TO AVOID BY SKIN TYPE — Dr. Mara Weinstein
 
-The 4 Ingredients to Avoid for Your Skin Type (And the 4 Products to Buy Instead)  Dr. Mara Weinstein · 9 min
+4 Ingredients to Avoid by Skin Type  Dr. Mara Weinstein · 9 min
 
 **TITLE OPTIONS**
 
@@ -12,76 +12,94 @@ The 4 Ingredients to Avoid for Your Skin Type (And the 4 Products to Buy Instead
 
 hook · 0:00
 
-Most people are not using bad products. They're using good products that are wrong for their skin — and one ingredient is quietly undoing everything else in the routine. I'm a board-certified dermatologist, and I'll walk you through the single ingredient I'd take out of the routine for each of the four main skin types, and the exact product I'd put in instead. Every one of them is at your drugstore, and none of them are expensive.
+Most people aren't using bad products. They're using good products that are wrong for their skin. And usually it's one ingredient undoing everything else.
 
-And this matters more than adding another serum ever will. Subtraction outperforms addition in skincare almost every time. I see patients spending two hundred dollars a month on products that are genuinely well formulated, while one ingredient sitting in the middle of their routine is causing the exact problem they're trying to fix.
+Hi everyone, I'm Dr. Mara Weinstein, board-certified dermatologist. Today I'm giving you one ingredient to take out of your routine for each of the four main skin types. And the exact product to put in instead.
 
-So here's the plan: four skin types, four ingredients to remove, four products to buy. Oily and acne-prone first, then dry, then sensitive, and the fourth is for pigmented and melasma-prone skin — which is the one where the wrong choice actively makes the problem worse. Let's start with oily.
+Everything I recommend today is at your drugstore. None of it is expensive.
+
+Here's the plan. Four skin types. Four ingredients to remove. Four products to buy. Oily first, then dry, then sensitive. And the fourth one is for dark spots, which is the one people get wrong the most. Let's start with oily.
 
 body
 
-1 · Oily & Acne-Prone: Stop Using Facial Oils · 1:10
+1 · Oily and Acne-Prone: Take Out the Oils · 1:10
 
-Let's start with the skin type that gets the most contradictory advice online — oily and acne-prone. And the ingredient I want out is the one that's been marketed to you hardest for the last decade: facial oils, and coconut oil above all of them.
+Let's start with oily and acne-prone skin. This is the skin type that gets the worst advice online.
 
-Here's why it matters. Coconut oil is highly comedogenic, which means it plugs pores in skin that's already prone to plugging. It also sits in a category of ingredients that includes isopropyl myristate and isopropyl palmitate, which you'll find in a lot of makeup removers and rich creams, and which are known to trigger breakouts in acne-prone skin. The trend of oil cleansing and slathering oils on acne-prone skin came out of wellness culture, not dermatology.
+The ingredient I want out is facial oil. Coconut oil especially.
 
-I had a patient in her twenties whose acne was well controlled for a year, and then it came back along her cheeks and jawline. Her medications hadn't changed, nothing had changed — except she'd started using coconut oil to take off her makeup because she'd seen it recommended as the natural option. We stopped the oil and changed nothing else. Six weeks later, clear.
+Coconut oil is highly comedogenic. That means it clogs pores. And if your pores already clog easily, you're making the problem worse. Two others to watch for are isopropyl myristate and isopropyl palmitate. You'll see them in makeup removers and rich creams, and they cause breakouts too.
 
-So if your skin is oily or acne-prone, take the oils out. What you want instead is a gentle foaming or gel cleanser that removes oil without stripping — CeraVe Foaming Facial Cleanser is my drugstore pick, it has ceramides and niacinamide, and it's about fifteen dollars. If you need makeup off first, use a micellar water or a dedicated non-comedogenic remover, not an oil.
+I had a patient in her twenties whose acne was clear for a full year. Then it came back across her cheeks and jaw. Nothing had changed except one thing. She started using coconut oil to take off her makeup, because she'd seen it called the natural option. We stopped the oil. That's it. Six weeks later she was clear again.
 
-Now the exact opposite is true for the next group — because for dry skin, oils aren't the problem at all. Something else is.
+So if your skin is oily or breaks out, take the oils out. Use a gentle foaming or gel cleanser instead. My drugstore pick is the CeraVe Foaming Facial Cleanser. It's about fifteen dollars and it has ceramides and niacinamide in it. If you need to take off makeup first, use a micellar water, not an oil.
 
-2 · Dry Skin: Stop Using Denatured Alcohol · 2:45
+Now, for the next skin type, oils aren't the problem at all. Something else is.
 
-If your skin is dry, the ingredient I want you to look for and eliminate is alcohol denat — sometimes listed as SD alcohol or ethanol — sitting in the top five ingredients of a product.
+2 · Dry Skin: Take Out the Alcohol · 2:45
 
-Here's what it's doing. Denatured alcohol is used to make products feel light and dry down fast, which is genuinely pleasant, and that's why it's so common in toners and lightweight serums. But it evaporates and takes water with it, and with repeated use it dissolves the lipids in your barrier — the very fats that hold moisture in. So a product that feels refreshing in the moment is making the underlying dryness worse over months. And the same logic applies to sulfate-based foaming cleansers on dry skin: that squeaky-clean feeling is stripped lipids.
+If your skin is dry, go look at your labels for alcohol denat. It's sometimes listed as SD alcohol or ethanol. If it's in the first five ingredients, that product is working against you.
 
-I had a patient come in convinced she had developed a skin condition. Her cheeks were flaking, tight, stinging under makeup. Her routine looked reasonable on paper — but her toner had alcohol denat as the second ingredient, and she was using it twice a day, thinking she was prepping her skin. We removed one product. Her skin was normal in three weeks.
+Here's what it does. Alcohol makes a product feel light and dry down fast. That feels great. That's why it's in so many toners.
 
-So for dry skin, read the first five ingredients and put back anything with alcohol denat near the top. What you want instead is a cream that layers humectants, ceramides and occlusives — CeraVe Moisturizing Cream in the tub, about eighteen dollars, is still the one I recommend more than any other product in dermatology, and you apply it to slightly damp skin.
+But it evaporates and takes water with it. Over time it also breaks down the fats in your skin barrier. Those fats are what hold moisture in. So the product that feels refreshing today is making you drier over months.
 
-That's the fix for dryness. But dryness and sensitivity aren't the same thing, and the next ingredient is the number one cause of reactions I see in my practice.
+Same idea with harsh foaming cleansers. That squeaky-clean feeling is stripped skin.
 
-3 · Sensitive & Reactive Skin: Stop Using Fragrance · 4:15
+I had a patient who was sure she'd developed a skin condition. Flaking cheeks, tight skin, stinging under makeup. Her routine looked fine on paper. But her toner had alcohol denat as the second ingredient, and she was using it twice a day. We took out one product. Her skin was normal in three weeks.
 
-For sensitive, reactive, rosacea-prone or eczema-prone skin, this one isn't close. Take out fragrance — and that includes essential oils, which are fragrance.
+So for dry skin, read the first five ingredients and put back anything with alcohol near the top. What you want instead is a real cream. CeraVe Moisturizing Cream in the tub, about eighteen dollars. Put it on slightly damp skin.
 
-Fragrance is the most common cosmetic allergen in dermatology. And here's the part that trips people up: "unscented" is not the same as "fragrance-free." Unscented can mean a masking fragrance was added to cover a smell. The word you want on the label is fragrance-free. Also know that fragrance hides under other names — parfum, and botanical extracts like lavender, citrus and peppermint oils, which contain the same allergenic compounds. Limonene and linalool on an ingredient list are fragrance components.
+Now, dry and sensitive are not the same thing. And the next ingredient causes more reactions than anything else I see.
 
-The patients this catches are the ones who tell me nothing works and everything stings. I had a woman with mild rosacea who'd cycled through six different "calming" products, every one of them scented with essential oils because natural sounded gentler. We took her down to fragrance-free everything for a month, and the stinging she'd assumed was just her skin disappeared completely.
+3 · Sensitive Skin: Take Out the Fragrance · 4:15
 
-So for sensitive skin, the label rule is fragrance-free and short ingredient lists. My drugstore pick is Vanicream — the Gentle Facial Cleanser and the Moisturizing Cream — because it's formulated without fragrance, dyes, and the common preservative allergens, and it's what I hand to my most reactive patients.
+If your skin is sensitive, reactive, or you have rosacea or eczema, this one is easy. Take out fragrance. And yes, that includes essential oils. Essential oils are fragrance.
 
-Three down. But the fourth is the one people get wrong most often, and it's the only one on this list where the wrong choice actually drives the problem forward.
+Fragrance is the most common allergen in skincare. Full stop.
 
-4 · Pigmented & Melasma-Prone: Stop Using Physical Scrubs · 5:50
+Here's the part that trips people up. Unscented and fragrance-free are not the same thing. Unscented can mean they added a fragrance to cover up a smell. The words you want on the label are fragrance-free.
 
-Here's the one I most want you to hear — for anyone dealing with melasma, dark spots, or post-inflammatory hyperpigmentation. Stop using physical scrubs, harsh grainy exfoliants, and aggressive at-home peels.
+Fragrance also hides under other names. Parfum. Lavender oil. Citrus oil. Peppermint oil. Limonene and linalool. Those are all fragrance.
 
-The reason is a rule that governs pigmented skin: inflammation makes pigment. Any time you irritate skin that is prone to hyperpigmentation, the melanocytes respond to that inflammation by producing more pigment. So the scrub you're using to buff away a dark spot is, mechanically, producing more of them. It feels productive because your skin looks pink and polished for an hour, and then the mark comes back darker three weeks later. Same story with high-percentage acid peels bought online and left on too long.
+I had a patient with mild rosacea who told me nothing worked and everything stung. She'd been through six different calming products. Every single one was scented with essential oils, because natural sounded gentler to her. We switched her to fragrance-free everything for one month. The stinging she thought was just her skin went away completely.
 
-This is the frustration I hear constantly from patients with melasma and from my patients with deeper skin tones: they've been fighting a spot for a year and it keeps getting darker, and every single thing they're doing to it is inflammatory. Melasma in particular is also driven by heat and by visible light, not just UV — which is why a scrub, a hot steam treatment, and an untinted sunscreen can all keep it going.
+So for sensitive skin, look for fragrance-free and short ingredient lists. My drugstore pick is Vanicream. The Gentle Facial Cleanser and the Moisturizing Cream. It's what I hand to my most reactive patients.
 
-So for pigmentation, the swap is gentle and consistent instead of aggressive and occasional. Get your exfoliation from a low-strength leave-on ingredient a few nights a week rather than a scrub, and pair it with the single most important product for pigmentation: a tinted mineral sunscreen. La Roche-Posay Anthelios Mineral Tinted SPF 50 is my drugstore pick, because the iron oxides that create the tint are what block visible light — and untinted sunscreen, no matter the SPF, leaves your dark spots exposed to the exact light that's driving them.
+That's three. The fourth one is the one people get wrong the most, and it's the only one where the mistake actually makes the problem grow.
 
-So the whole thing comes down to this: oily skin, take out the oils. Dry skin, take out the denatured alcohol. Sensitive skin, take out the fragrance. And pigmented skin, take out the scrub and add the tint. Four removals, four replacements — and almost every one of them costs less than the product you're taking out.
+4 · Dark Spots and Melasma: Take Out the Scrub · 5:50
+
+This one is for anyone with melasma, dark spots, or marks left behind after a breakout. Stop using scrubs. That includes grainy exfoliants and strong at-home peels.
+
+Here's the rule for skin that makes pigment easily. Inflammation makes pigment.
+
+So every time you irritate that skin, it responds by making more pigment. The scrub you're using to buff away a dark spot is making more dark spots. It feels like it's working, because your skin looks pink and polished for an hour. Then three weeks later the mark comes back darker.
+
+I hear this constantly from my melasma patients and my patients with deeper skin tones. They've been fighting a spot for a year, it keeps getting darker, and everything they're doing to it is irritating.
+
+One more thing about melasma. It's not just triggered by UV. It's triggered by heat and by visible light too. So a scrub, a hot steam treatment, and a plain untinted sunscreen can all keep it going.
+
+So the swap here is gentle and consistent instead of harsh and occasional. Skip the scrub. And add the most important product for pigment, which is a tinted mineral sunscreen. My drugstore pick is La Roche-Posay Anthelios Mineral Tinted SPF 50.
+
+Here's why tinted matters. The tint comes from iron oxides. Iron oxides are the only thing that blocks visible light. A regular sunscreen, no matter how high the SPF, leaves your dark spots exposed to the light that's making them worse.
+
+So here's the whole thing. Oily skin, take out the oils. Dry skin, take out the alcohol. Sensitive skin, take out the fragrance. Dark spots, take out the scrub and add the tint. Four things to remove, four to buy, and almost every one costs less than what you're replacing.
 
 close · 8:40
 
-And if you want the full sunscreen breakdown, because the right SPF for your skin type is the other half of this — I went through the best sunscreen for oily, dry, sensitive and pigmented skin, and it's right here. I'll see you over there.
+And the other half of this is the right sunscreen for your skin type. I broke down the best sunscreen for oily, dry, sensitive and pigmented skin, and it's right here. I'll see you over there.
 
 ---
 
 ## PRODUCTION NOTE — CVS SHOPPING CHEAT SHEET
 
-*Everything below is stocked at a standard CVS. Confirm current shelf availability before shoot day and swap to the in-store equivalent if needed. Suggested filming: one shelf pull per skin type, four total.*
+*Everything below is stocked at a standard CVS. Confirm shelf availability before shoot day and swap to the in-store equivalent if needed. Suggested filming: one shelf pull per skin type, four total.*
 
 **Section 1 — Oily / acne-prone**
 - BUY: CeraVe Foaming Facial Cleanser (~$15) — ceramides + niacinamide, no oils
-- BUY (optional 2nd pull): Garnier Micellar Water, "for oily skin" blue cap (~$8) — makeup removal without oil
-- SHOW AND REJECT: any jar of coconut oil (CVS beauty or grocery aisle); a cleansing oil or cleansing balm
+- BUY (optional 2nd pull): Garnier Micellar Water, "for oily skin" blue cap (~$8)
+- SHOW AND REJECT: any jar of coconut oil; a cleansing oil or cleansing balm
 - ON-SCREEN TEXT: "coconut oil · isopropyl myristate · isopropyl palmitate"
 
 **Section 2 — Dry**
@@ -92,13 +110,13 @@ And if you want the full sunscreen breakdown, because the right SPF for your ski
 
 **Section 3 — Sensitive / reactive**
 - BUY: Vanicream Gentle Facial Cleanser (~$10) and Vanicream Moisturizing Cream (~$14)
-- SHOW AND REJECT: a scented "calming" product with lavender/citrus/peppermint oil; a product labeled "unscented"
+- SHOW AND REJECT: a scented "calming" product with lavender / citrus / peppermint oil; a product labeled "unscented"
 - ON-SCREEN TEXT: "fragrance · parfum · limonene · linalool · essential oils"
-- ON-SCREEN TEXT: "unscented ≠ fragrance-free"
+- ON-SCREEN TEXT: "unscented is not fragrance-free"
 
-**Section 4 — Pigmented / melasma-prone**
+**Section 4 — Dark spots / melasma**
 - BUY: La Roche-Posay Anthelios Mineral Tinted SPF 50 (~$35)
-- BUY (optional 2nd pull): The Ordinary or CVS-brand azelaic acid, or a niacinamide serum
+- BUY (optional 2nd pull): azelaic acid or a niacinamide serum
 - SHOW AND REJECT: an apricot-style grainy scrub; a high-percentage at-home peel kit
 - ON-SCREEN TEXT: "inflammation makes pigment"
 - ON-SCREEN TEXT: "iron oxides block visible light"
