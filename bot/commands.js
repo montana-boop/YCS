@@ -8,11 +8,14 @@ import {
   ChannelType,
   EmbedBuilder,
   MessageFlags,
+  GuildScheduledEventPrivacyLevel,
+  GuildScheduledEventEntityType,
 } from "discord.js";
 import { writeLink, readLink } from "../src/store.js";
 import { botConfig } from "./env.js";
 import { todaysMessage, postDay } from "./daily.js";
 import { ensureRoles, buildMenus } from "./roles.js";
+import { zonedToUTC } from "./events.js";
 
 const YCS_BLURPLE = 0x5865f2;
 
@@ -299,5 +302,105 @@ const launchPolls = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls];
+// --- /journal-club ----------------------------------------------------------
+// Launches journal club: creates a Discord scheduled event, posts the warm
+// intro (what it is + why it matters), and a who's-coming poll — all in one go.
+// Defaults to the very first one (Fri 8/29 11am ET) but date/time are options
+// so it can be reused for future sessions.
+const JOURNAL_INTRO = `okay besties, gather round — i've been waiting to share this one 🍒📓
+
+tomorrow we're hosting our very first **journal club**, and honestly it means more to me than i can properly put into words.
+
+**saturday, august 29th · 11am ET · virtual, right here with us** 🤍
+
+let me tell you why this is so special. i met my friend **ashley** on threads back when i was living in LA — i was fresh out of a breakup and grinding through a really toxic job, just trying to find myself again. ashley ran a journal club out there, and going to it became genuinely one of my favorite parts of my whole time in LA. we'd meet up on the beach and just... journal together. it was healing in a way i still think about.
+
+so to be starting our OWN journal club here, with ashley co-hosting the very first one? full circle 🥹 she's been an OG single bestie from the very beginning, she'll be right here in the chat with us, and we love her and her heart for this community so so much.
+
+**what even is journal club?** it's exactly what it sounds like — we come together, journal, reflect, and share as much (or as little) as we feel like. no pressure, no perfect way to do it. just intentional time for ourselves, together.
+
+we're planning to make this a weekly thing — we'll vote on the day/time soon 👀 — but this first one is the one that starts it all.
+
+vote below if you're in — i can't wait to do this with you 🤍📓`;
+
+const journalClub = {
+  data: new SlashCommandBuilder()
+    .setName("journal-club")
+    .setDescription("Launch journal club: create the event, post the intro, and a who's-coming poll.")
+    .addStringOption((o) =>
+      o.setName("date").setDescription("YYYY-MM-DD (default 2026-08-29)")
+    )
+    .addStringOption((o) =>
+      o.setName("time").setDescription("HH:MM 24h Eastern (default 11:00)")
+    )
+    .addBooleanOption((o) =>
+      o.setName("ping_everyone").setDescription("Ping @everyone instead of just @journal club (default off)")
+    )
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  async execute(interaction) {
+    await interaction.reply({ content: "setting up journal club… 🍒📓", flags: MessageFlags.Ephemeral });
+    const cfg = botConfig();
+    const tz = cfg.dailyTz;
+    const dateStr = interaction.options.getString("date") || "2026-08-29";
+    const timeStr = interaction.options.getString("time") || "11:00";
+    const pingEveryone = interaction.options.getBoolean("ping_everyone") ?? false;
+    const [y, mo, d] = dateStr.split("-").map(Number);
+    const [h, mi] = timeStr.split(":").map(Number);
+    const start = zonedToUTC(y, mo, d, h, mi, tz);
+    const end = new Date(start.getTime() + 90 * 60000); // ~90 min session
+
+    // 1) Create the Discord scheduled event (external — it lives in the chat).
+    let eventUrl = null;
+    try {
+      const existing = await interaction.guild.scheduledEvents.fetch();
+      const dup = existing.find(
+        (e) =>
+          e.name.toLowerCase().includes("journal club") &&
+          Math.abs((e.scheduledStartTimestamp || 0) - start.getTime()) < 3 * 3600000
+      );
+      const ev =
+        dup ||
+        (await interaction.guild.scheduledEvents.create({
+          name: "📓 Journal Club",
+          scheduledStartTime: start,
+          scheduledEndTime: end,
+          privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
+          entityType: GuildScheduledEventEntityType.External,
+          entityMetadata: { location: "🍒 right here in Single Besties (virtual)" },
+          description:
+            "our very first journal club, co-hosted by ashley 🤍 come journal, reflect, and share — as much or as little as you like. no pressure, just intentional time for us.",
+        }));
+      eventUrl = ev.url;
+    } catch (err) {
+      await interaction.editReply(`⚠️ couldn't create the event: ${err.message}`);
+      return;
+    }
+
+    // 2) Post the warm intro in the events channel.
+    const channel =
+      interaction.guild.channels.cache.find(
+        (c) => c.name === cfg.eventsChannelName && c.isTextBased?.()
+      ) || interaction.channel;
+    const role = interaction.guild.roles.cache.find((r) => r.name === "journal club");
+    const mention = pingEveryone ? "@everyone" : role ? `<@&${role.id}>` : "";
+    const parse = pingEveryone ? ["everyone"] : role ? ["roles"] : [];
+    await channel.send({
+      content: mention ? `${JOURNAL_INTRO}\n\n${mention}` : JOURNAL_INTRO,
+      allowedMentions: { parse },
+    });
+
+    // 3) Post the who's-coming poll.
+    await postPoll(channel, "📓 journal club tomorrow (sat, 11am ET) — you in?", [
+      "yes, i'm in! 🙌",
+      "want to but can't make this one 🥲",
+      "interested — tell me more 👀",
+    ]);
+
+    await interaction.editReply(
+      `✅ journal club is live in ${channel} — event on the calendar${eventUrl ? ` ([view](${eventUrl}))` : ""}, intro posted, and the poll's up 🍒`
+    );
+  },
+};
+
+export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls, journalClub];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));

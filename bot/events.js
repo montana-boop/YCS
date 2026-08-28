@@ -28,7 +28,7 @@ function etParts(date, tz) {
 }
 
 // The UTC instant for a wall-clock time in a timezone (DST-correct).
-function zonedToUTC(y, mo, d, h, mi, tz) {
+export function zonedToUTC(y, mo, d, h, mi, tz) {
   const guess = Date.UTC(y, mo - 1, d, h, mi);
   const p = {};
   for (const { type, value } of new Intl.DateTimeFormat("en-US", {
