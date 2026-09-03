@@ -65,7 +65,6 @@ export const ROLE_GROUPS = {
     options: [
       { name: "coworking" },
       { name: "game night" },
-      { name: "movie night" },
       { name: "hangout" },
     ],
   },

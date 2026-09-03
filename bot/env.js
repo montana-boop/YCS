@@ -24,8 +24,14 @@ export function botConfig() {
     gamesTime: process.env.DISCORD_GAMES_TIME || "09:30",
     // Community events (times in dailyTz).
     eventsChannelName: process.env.DISCORD_EVENTS_CHANNEL || "events-chat",
-    coworkingTime: process.env.DISCORD_COWORKING_TIME || "12:00",
-    movieVoteTime: process.env.DISCORD_MOVIE_VOTE_TIME || "17:00",
+    // Coworking reminder times — a few across the day to catch different time
+    // zones. Comma-separated "HH:MM" (24h, Eastern). The voice room is always open.
+    coworkingTimes: (process.env.DISCORD_COWORKING_TIMES || "08:00,13:00,20:00")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean),
+    // Birthday bot: daily time to check for + celebrate birthdays.
+    birthdayTime: process.env.DISCORD_BIRTHDAY_TIME || "09:00",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined

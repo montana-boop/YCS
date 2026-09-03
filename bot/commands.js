@@ -11,11 +11,15 @@ import {
   GuildScheduledEventPrivacyLevel,
   GuildScheduledEventEntityType,
 } from "discord.js";
-import { writeLink, readLink } from "../src/store.js";
+import { writeLink, readLink, setBirthday } from "../src/store.js";
 import { botConfig } from "./env.js";
 import { todaysMessage, postDay } from "./daily.js";
 import { ensureRoles, buildMenus } from "./roles.js";
 import { zonedToUTC } from "./events.js";
+import { birthdayLabel } from "./birthday.js";
+
+// Days in each month (index 0 = Jan); February allows 29 for leap-year babies.
+const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
 const YCS_BLURPLE = 0x5865f2;
 
@@ -424,5 +428,36 @@ const journalClub = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls, journalClub];
+// --- /birthday --------------------------------------------------------------
+// Members save their birthday (month + day, no year). The birthday scheduler
+// celebrates them on the day and grants a temporary 🎂 role.
+const birthday = {
+  data: new SlashCommandBuilder()
+    .setName("birthday")
+    .setDescription("Save your birthday so we can celebrate you 🎂 (month + day, no year)")
+    .addIntegerOption((o) =>
+      o.setName("month").setDescription("month (1–12)").setRequired(true).setMinValue(1).setMaxValue(12)
+    )
+    .addIntegerOption((o) =>
+      o.setName("day").setDescription("day (1–31)").setRequired(true).setMinValue(1).setMaxValue(31)
+    ),
+  async execute(interaction) {
+    const month = interaction.options.getInteger("month", true);
+    const day = interaction.options.getInteger("day", true);
+    if (day > DAYS_IN_MONTH[month - 1]) {
+      await interaction.reply({
+        content: `hmm, that month doesn't have ${day} days 🤔 double-check and try again?`,
+        flags: MessageFlags.Ephemeral,
+      });
+      return;
+    }
+    setBirthday(interaction.user.id, month, day);
+    await interaction.reply({
+      content: `saved! 🎂 we'll celebrate you on **${birthdayLabel(month, day)}** 🥳🍒`,
+      flags: MessageFlags.Ephemeral,
+    });
+  },
+};
+
+export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls, journalClub, birthday];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));
