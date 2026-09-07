@@ -134,6 +134,10 @@ biggest small joy of your week? (the coffee, the text, the perfect parking spot)
 if you could teleport anywhere just for the weekend, where are you going... and who (if anyone) are you bringing?`,
   "2026-09-06": `sunday reset 🍂
 we're easing into fall... what are you ready to leave behind this season?`,
+  "2026-09-07": `happy labor day besties 🇺🇸🍒
+for the girls in the states: it's a day OFF, so no productivity guilt allowed.
+what are you doing with your long weekend... bbq, beach, a nap that goes way too long, or absolutely nothing?
+and one honest one: when's the last time you actually took a real break from work? be for real.`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
