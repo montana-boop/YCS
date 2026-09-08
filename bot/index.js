@@ -14,8 +14,19 @@ import { startGamesScheduler } from "./games.js";
 import { handleRoleSelect } from "./roles.js";
 import { startCoworkingReminder } from "./events.js";
 import { startBirthdayScheduler } from "./birthday.js";
+import { DATA_DIR } from "../src/store.js";
+
+// A stray error in a timer or a request should be logged, not fatal: a crash
+// here means missed daily posts for the whole community.
+process.on("unhandledRejection", (err) => {
+  console.error("⚠️ Unhandled rejection:", err?.stack || err);
+});
+process.on("uncaughtException", (err) => {
+  console.error("⚠️ Uncaught exception:", err?.stack || err);
+});
 
 const cfg = botConfig();
+console.log(`   💾 Data dir: ${DATA_DIR}`);
 try {
   requireBotEnv(cfg, ["token"]);
 } catch (err) {

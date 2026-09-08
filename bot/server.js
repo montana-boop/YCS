@@ -12,7 +12,19 @@ import { readLink } from "../src/store.js";
 const JOIN_PATHS = new Set(["/discord", "/join", "/invite"]);
 
 export function startServer(cfg) {
+  // One bad request must never take the bot down: wrap the handler and answer
+  // 500 on any unexpected error instead of letting it escape the process.
   const server = http.createServer((req, res) => {
+    try {
+      handle(req, res);
+    } catch (err) {
+      console.error(`   ⚠️ HTTP handler error: ${err.message}`);
+      if (!res.headersSent) res.writeHead(500, { "Content-Type": "text/plain" });
+      res.end("Something went wrong");
+    }
+  });
+
+  function handle(req, res) {
     let path = "/";
     try {
       path = new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname;
@@ -58,7 +70,7 @@ export function startServer(cfg) {
 
     res.writeHead(404, { "Content-Type": "text/plain" });
     res.end("Not found");
-  });
+  }
 
   server.listen(cfg.port, () => {
     console.log(`   🌐 Stable-link server listening on :${cfg.port} — share the /discord path`);
