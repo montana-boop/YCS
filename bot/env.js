@@ -30,8 +30,10 @@ export function botConfig() {
       .split(",")
       .map((s) => s.trim())
       .filter(Boolean),
-    // Birthday bot: daily time to check for + celebrate birthdays.
+    // Birthday bot: daily time to check for + celebrate birthdays, and the
+    // channel (by name) to celebrate in — falls back to the main chat if missing.
     birthdayTime: process.env.DISCORD_BIRTHDAY_TIME || "09:00",
+    birthdayChannelName: process.env.DISCORD_BIRTHDAY_CHANNEL || "birthdays",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined

@@ -60,9 +60,15 @@ async function runBirthdays(client, cfg) {
     }
   }
 
-  // Celebrate today's besties.
-  const channelId = cfg.channelId || cfg.dailyChannelId;
-  const channel = channelId ? await client.channels.fetch(channelId).catch(() => null) : null;
+  // Celebrate today's besties — in #birthdays if that channel exists, otherwise
+  // the main chat (DISCORD_CHANNEL_ID), otherwise the daily-question channel.
+  let channel = guild.channels.cache.find(
+    (c) => c.name === cfg.birthdayChannelName && c.isTextBased?.()
+  );
+  if (!channel) {
+    const channelId = cfg.channelId || cfg.dailyChannelId;
+    channel = channelId ? await client.channels.fetch(channelId).catch(() => null) : null;
+  }
   for (const userId of celebrating) {
     const member = guild.members.cache.get(userId);
     if (!member) continue;
