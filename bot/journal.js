@@ -29,7 +29,7 @@ const PROMPTS = [
 const OVERRIDES = {};
 
 // The day PROMPTS[0] posts. Earlier dates post nothing.
-const ANCHOR_UTC = Date.UTC(2026, 8, 10); // 2026-09-10
+const ANCHOR_UTC = Date.UTC(2026, 8, 9); // 2026-09-09
 
 export function promptForDate(dateStr) {
   if (OVERRIDES[dateStr]) return OVERRIDES[dateStr];
