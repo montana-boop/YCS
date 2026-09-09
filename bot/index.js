@@ -12,8 +12,9 @@ import { startServer } from "./server.js";
 import { startDailyScheduler } from "./daily.js";
 import { startGamesScheduler } from "./games.js";
 import { handleRoleSelect } from "./roles.js";
-import { startCoworkingReminder } from "./events.js";
+import { startCoworkingReminder, startEventScheduler } from "./events.js";
 import { startBirthdayScheduler } from "./birthday.js";
+import { startJournalScheduler } from "./journal.js";
 import { DATA_DIR } from "../src/store.js";
 
 // A stray error in a timer or a request should be logged, not fatal: a crash
@@ -72,11 +73,15 @@ client.once(Events.ClientReady, async (c) => {
   // Daily Wordle nudge in #daily-games.
   startGamesScheduler(client, cfg);
 
-  // Community events: coworking reminders across time zones.
+  // Community events: coworking reminders across time zones + weekly Journal Club event.
   startCoworkingReminder(client, cfg);
+  startEventScheduler(client, cfg);
 
   // Birthday bot: celebrate members on their day 🎂
   startBirthdayScheduler(client, cfg);
+
+  // Journal prompt of the day for the writing besties ✍️
+  startJournalScheduler(client, cfg);
 });
 
 // Slash command + role-menu dispatch.
