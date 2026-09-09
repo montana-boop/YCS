@@ -8,15 +8,14 @@ import {
   ChannelType,
   EmbedBuilder,
   MessageFlags,
-  GuildScheduledEventPrivacyLevel,
-  GuildScheduledEventEntityType,
 } from "discord.js";
 import { writeLink, readLink, setBirthday } from "../src/store.js";
 import { botConfig } from "./env.js";
 import { todaysMessage, postDay } from "./daily.js";
 import { ensureRoles, buildMenus } from "./roles.js";
-import { zonedToUTC } from "./events.js";
+import { nextJournalClub, ensureJournalEvent, dayLabel } from "./events.js";
 import { birthdayLabel } from "./birthday.js";
+import { todaysPrompt, postPrompt } from "./journal.js";
 
 // Days in each month (index 0 = Jan); February allows 29 for leap-year babies.
 const DAYS_IN_MONTH = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -307,44 +306,14 @@ const launchPolls = {
 };
 
 // --- /journal-club ----------------------------------------------------------
-// Launches journal club: creates a Discord scheduled event, posts the warm
-// intro (what it is + why it matters), and a who's-coming poll — all in one go.
-// Defaults to the very first one (Fri 8/29 11am ET) but date/time are options
-// so it can be reused for future sessions.
-// The intro, built around a reference to the co-host. Pass a real member
-// mention (e.g. "<@123>") so Ashley gets tagged and linked; falls back to
-// plain "ashley" text when no host is selected.
-function journalIntro(hostRef) {
-  return `okay besties, gather round — i've been waiting to share this one 🍒📓
-
-tomorrow we're hosting our very first **journal club**, and honestly it means more to me than i can properly put into words.
-
-**saturday, august 29th · 11am ET · virtual, right here with us** 🤍
-
-let me tell you why this is so special. i met my friend ${hostRef} on threads back when i was living in LA — i was fresh out of a breakup and grinding through a really toxic job, just trying to find myself again. she ran a journal club out there, and going to it became genuinely one of my favorite parts of my whole time in LA. we'd meet up on the beach and just... journal together. it was healing in a way i still think about.
-
-so to be starting our OWN journal club here, with her co-hosting the very first one? full circle 🥹 she's been an OG single bestie from the very beginning, she'll be right here in the chat with us, and we love her and her heart for this community so so much.
-
-**what even is journal club?** it's exactly what it sounds like — we come together, journal, reflect, and share as much (or as little) as we feel like. no pressure, no perfect way to do it. just intentional time for ourselves, together.
-
-we're planning to make this a weekly thing — we'll vote on the day/time soon 👀 — but this first one is the one that starts it all.
-
-vote below if you're in — i can't wait to do this with you 🤍📓`;
-}
-
+// Hypes this week's journal club: posts a short generic announcement for the
+// next session (no host names), a who's-coming poll, and makes sure the
+// calendar event exists. The weekly event itself is kept scheduled
+// automatically by startEventScheduler, so this is just the "pull up" post.
 const journalClub = {
   data: new SlashCommandBuilder()
     .setName("journal-club")
-    .setDescription("Launch journal club: create the event, post the intro, and a who's-coming poll.")
-    .addUserOption((o) =>
-      o.setName("host").setDescription("Tag the co-host (pick Ashley from the member list)")
-    )
-    .addStringOption((o) =>
-      o.setName("date").setDescription("YYYY-MM-DD (default 2026-08-29)")
-    )
-    .addStringOption((o) =>
-      o.setName("time").setDescription("HH:MM 24h Eastern (default 11:00)")
-    )
+    .setDescription("Post the journal club announcement + poll for this week's session.")
     .addBooleanOption((o) =>
       o.setName("ping_everyone").setDescription("Ping @everyone instead of just @journal club (default off)")
     )
@@ -352,79 +321,87 @@ const journalClub = {
   async execute(interaction) {
     await interaction.reply({ content: "setting up journal club… 🍒📓", flags: MessageFlags.Ephemeral });
     const cfg = botConfig();
-    const tz = cfg.dailyTz;
-    const dateStr = interaction.options.getString("date") || "2026-08-29";
-    const timeStr = interaction.options.getString("time") || "11:00";
     const pingEveryone = interaction.options.getBoolean("ping_everyone") ?? false;
-    const host = interaction.options.getUser("host"); // the co-host to tag (Ashley)
-    const [y, mo, d] = dateStr.split("-").map(Number);
-    const [h, mi] = timeStr.split(":").map(Number);
-    const start = zonedToUTC(y, mo, d, h, mi, tz);
-    const end = new Date(start.getTime() + 90 * 60000); // ~90 min session
+    const start = nextJournalClub(cfg);
+    if (!start) {
+      await interaction.editReply("couldn't work out the next journal club date 🤔");
+      return;
+    }
+    const when = dayLabel(start, cfg.dailyTz); // e.g. "saturday, september 12"
+    const [h, mi] = cfg.journalClubTime.split(":").map(Number);
+    const clock = `${((h + 11) % 12) + 1}${mi ? ":" + String(mi).padStart(2, "0") : ""}${h < 12 ? "am" : "pm"} ET`;
+    const voice = interaction.guild.channels.cache.find(
+      (c) => c.type === ChannelType.GuildVoice && c.name.toLowerCase().includes("journal club")
+    );
+    const room = voice ? `<#${voice.id}>` : "the Journal Club voice room";
 
-    // The announcement is what matters most — post it first and unconditionally
-    // so a hiccup in event-creation (below) can never swallow the message.
     const channel =
       interaction.guild.channels.cache.find(
         (c) => c.name === cfg.eventsChannelName && c.isTextBased?.()
       ) || interaction.channel;
-    const status = []; // human-readable notes for the ephemeral confirmation
+    const status = [];
 
-    // 1) Post the warm intro (tagging the co-host) in the events channel.
+    // 1) Announcement (generic — no names, date fills in each week).
     try {
-      const hostRef = host ? `<@${host.id}>` : "**ashley**";
       const role = interaction.guild.roles.cache.find((r) => r.name === "journal club");
       const suffix = pingEveryone ? "@everyone" : role ? `<@&${role.id}>` : "";
       const parse = pingEveryone ? ["everyone"] : role ? ["roles"] : [];
-      const body = journalIntro(hostRef);
+      const body =
+        `journal club is this saturday 🍒📓\n\n` +
+        `**${when} · ${clock} · ${room}**\n\n` +
+        `bring your journal, your coffee, and whatever's on your mind. we'll write together, share if you feel like it, and keep it low-pressure as always.\n\n` +
+        `vote below so we know who's pulling up 🤍`;
       await channel.send({
         content: suffix ? `${body}\n\n${suffix}` : body,
-        // Tag the host (users) plus the role/everyone ping (parse), nothing else.
-        allowedMentions: { parse, users: host ? [host.id] : [] },
+        allowedMentions: { parse },
       });
-      status.push(host ? "✅ intro posted (Ashley tagged)" : "✅ intro posted");
+      status.push("✅ announcement posted");
     } catch (err) {
-      status.push(`⚠️ intro failed: ${err.message}`);
+      status.push(`⚠️ announcement failed: ${err.message}`);
     }
 
-    // 2) Post the who's-coming poll.
+    // 2) Poll.
     try {
-      await postPoll(channel, "📓 journal club tomorrow (sat, 11am ET) — you in?", [
-        "yes, i'm in! 🙌",
-        "want to but can't make this one 🥲",
-        "interested — tell me more 👀",
+      await postPoll(channel, "📓 journal club saturday — you in?", [
+        "yes, i'm in 🙌",
+        "can't this week 🥲",
+        "maybe, tell me more 👀",
       ]);
       status.push("✅ poll up");
     } catch (err) {
       status.push(`⚠️ poll failed: ${err.message}`);
     }
 
-    // 3) Create the Discord scheduled event (best-effort — never blocks the post).
+    // 3) Calendar event (best-effort; normally already there).
     try {
-      const existing = await interaction.guild.scheduledEvents.fetch();
-      const dup = existing.find(
-        (e) =>
-          e.name.toLowerCase().includes("journal club") &&
-          Math.abs((e.scheduledStartTimestamp || 0) - start.getTime()) < 3 * 3600000
-      );
-      const ev =
-        dup ||
-        (await interaction.guild.scheduledEvents.create({
-          name: "📓 Journal Club",
-          scheduledStartTime: start,
-          scheduledEndTime: end,
-          privacyLevel: GuildScheduledEventPrivacyLevel.GuildOnly,
-          entityType: GuildScheduledEventEntityType.External,
-          entityMetadata: { location: "🍒 right here in Single Besties (virtual)" },
-          description:
-            "our very first journal club, co-hosted by ashley 🤍 come journal, reflect, and share — as much or as little as you like. no pressure, just intentional time for us.",
-        }));
-      status.push(`✅ event on the calendar ([view](${ev.url}))`);
+      const ev = await ensureJournalEvent(interaction.guild, cfg);
+      status.push(ev ? `✅ event on the calendar ([view](${ev.url}))` : "⚠️ no upcoming date found for the event");
     } catch (err) {
-      status.push(`⚠️ event couldn't be created (${err.message}) — the announcement still posted, you can add the event by hand if needed`);
+      status.push(`⚠️ event couldn't be created (${err.message}) — the announcement still posted`);
     }
 
     await interaction.editReply(`journal club in ${channel}:\n` + status.map((s) => `• ${s}`).join("\n"));
+  },
+};
+
+// --- /journal-prompt --------------------------------------------------------
+// Posts today's journal prompt right now (the daily timer posts it at 11am ET).
+const journalPrompt = {
+  data: new SlashCommandBuilder()
+    .setName("journal-prompt")
+    .setDescription("Post today's journal prompt now.")
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
+  async execute(interaction) {
+    const cfg = botConfig();
+    if (!todaysPrompt(cfg.dailyTz)) {
+      await interaction.reply({ content: "no journal prompt scheduled for today.", flags: MessageFlags.Ephemeral });
+      return;
+    }
+    const sent = await postPrompt(interaction.client, cfg);
+    await interaction.reply({
+      content: `posted today's journal prompt ✍️ — [jump](${sent.url})`,
+      flags: MessageFlags.Ephemeral,
+    });
   },
 };
 
@@ -459,5 +436,5 @@ const birthday = {
   },
 };
 
-export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls, journalClub, birthday];
+export const commands = [ping, blast, discuss, invite, link, qotd, setupRoles, launchPolls, journalClub, journalPrompt, birthday];
 export const commandMap = new Map(commands.map((c) => [c.data.name, c]));

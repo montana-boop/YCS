@@ -34,6 +34,13 @@ export function botConfig() {
     // channel (by name) to celebrate in — falls back to the main chat if missing.
     birthdayTime: process.env.DISCORD_BIRTHDAY_TIME || "09:00",
     birthdayChannelName: process.env.DISCORD_BIRTHDAY_CHANNEL || "birthdays",
+    // Journal prompt of the day: daily time + channel (matched by name, so the
+    // emoji/prefix in the real channel name doesn't matter).
+    journalTime: process.env.DISCORD_JOURNAL_TIME || "11:00",
+    journalChannelName: process.env.DISCORD_JOURNAL_CHANNEL || "journal-and-writing-besties",
+    // Weekly Journal Club event (short weekday name + HH:MM in dailyTz).
+    journalClubWeekday: process.env.DISCORD_JOURNAL_CLUB_DAY || "Sat",
+    journalClubTime: process.env.DISCORD_JOURNAL_CLUB_TIME || "10:00",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined
