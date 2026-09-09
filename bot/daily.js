@@ -106,7 +106,9 @@ const ANCHOR_UTC = Date.UTC(2026, 6, 13); // 2026-07-13 (a Monday)
 // Exact-date overrides: approved one-off questions pinned to a specific date.
 // These take precedence over the weekly rotation for that day. Body only —
 // the scheduler appends the @everyone mention automatically.
+// A value of null means "post nothing that day" (skip).
 const OVERRIDES = {
+  "2026-09-09": null, // skipped at Montana's request
   "2026-08-26": `happy hump day 🍒
 we talk about green flags in dating but not friendship...
 what's a green flag you look for in a FRIEND now?`,
@@ -174,7 +176,9 @@ export function weekIndexForDate(dateStr) {
 // otherwise fall back to the weekly rotation.
 export function todaysMessage(tz) {
   const { weekday, date } = tzNow(tz);
-  if (OVERRIDES[date]) return OVERRIDES[date];
+  // An override wins for its date — including an explicit null, which means
+  // "skip today" (the scheduler posts nothing when this returns null).
+  if (Object.hasOwn(OVERRIDES, date)) return OVERRIDES[date] || null;
   return WEEKS[weekIndexForDate(date)][weekday] || null;
 }
 
