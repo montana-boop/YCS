@@ -41,6 +41,9 @@ export function botConfig() {
     // Weekly Journal Club event (short weekday name + HH:MM in dailyTz).
     journalClubWeekday: process.env.DISCORD_JOURNAL_CLUB_DAY || "Sat",
     journalClubTime: process.env.DISCORD_JOURNAL_CLUB_TIME || "10:00",
+    // Cosy Girl October challenge: daily post time + channel (matched by name).
+    octoberTime: process.env.DISCORD_OCTOBER_TIME || "08:00",
+    octoberChannelName: process.env.DISCORD_OCTOBER_CHANNEL || "october-challenge",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined
