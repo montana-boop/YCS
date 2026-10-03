@@ -1,8 +1,8 @@
 // Cosy Girl October: one small daily post in the #october-challenge channel,
-// Oct 3–31. Day 1 is the announcement (pings @everyone); the rest are short
-// tiny-challenges / cosy prompts / share-backs in Montana's voice. Weekly
-// themes: ease in → say yes to small things → have one goal → romanticise the
-// norm → make yourself proud.
+// Oct 3–31. Day 1 is the announcement and goes out at cfg.octoberKickoffTime
+// (8am ET); every later day posts at cfg.octoberTime (10am ET). Every post
+// pings @everyone so nobody misses it. Weekly themes: ease in → say yes to
+// small things → have one goal → romanticise the norm → make yourself proud.
 
 import { tzNow } from "./daily.js";
 
@@ -13,7 +13,6 @@ const DAYS = {
   // --- ease in ---
   "2026-10-03": {
     n: 1,
-    mention: "@everyone",
     text: `okay besties, ${TITLE} starts NOW 🎃🍂
 for the rest of the month there'll be one little thing in here every morning. sometimes a tiny challenge, sometimes a question, sometimes "send a pic." nothing heavy, nothing you have to keep up with. miss a day? who cares, jump back in.
 
@@ -165,19 +164,24 @@ export async function postOctober(client, cfg) {
   const guild = client.guilds.cache.get(cfg.guildId);
   const channel = findChannel(guild, cfg.octoberChannelName);
   if (!channel) throw new Error(`channel matching "${cfg.octoberChannelName}" not found`);
-  const body = formatDay(day);
-  const content = day.mention ? `${body}\n\n${day.mention}` : body;
-  const parse = day.mention === "@everyone" ? ["everyone"] : [];
-  return channel.send({ content, allowedMentions: { parse } });
+  const content = `${formatDay(day)}\n\n@everyone`;
+  return channel.send({ content, allowedMentions: { parse: ["everyone"] } });
+}
+
+// The time a given day's post goes out: day 1 uses the kickoff time.
+export function postTimeFor(day, cfg) {
+  return day.n === 1 ? cfg.octoberKickoffTime : cfg.octoberTime;
 }
 
 export function startOctoberScheduler(client, cfg) {
-  const target = cfg.octoberTime;
-  console.log(`   🎃 October challenge: daily at ${target} ${cfg.dailyTz} → #${cfg.octoberChannelName} (Oct 3–31)`);
+  console.log(
+    `   🎃 October challenge: day 1 at ${cfg.octoberKickoffTime}, then daily at ${cfg.octoberTime} ${cfg.dailyTz} → #${cfg.octoberChannelName} (Oct 3–31)`
+  );
   let last = null;
   const tick = async () => {
     const { time, date } = tzNow(cfg.dailyTz);
-    if (time !== target || last === date || !dayForDate(date)) return;
+    const day = dayForDate(date);
+    if (!day || last === date || time !== postTimeFor(day, cfg)) return;
     last = date;
     try {
       await postOctober(client, cfg);
