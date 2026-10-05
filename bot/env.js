@@ -44,7 +44,7 @@ export function botConfig() {
     // Cosy Girl October challenge: day 1 posts at the kickoff time, every later
     // day at the regular time; channel matched by name. All posts ping @everyone.
     octoberKickoffTime: process.env.DISCORD_OCTOBER_KICKOFF_TIME || "08:00",
-    octoberTime: process.env.DISCORD_OCTOBER_TIME || "10:00",
+    octoberTime: process.env.DISCORD_OCTOBER_TIME || "08:00",
     octoberChannelName: process.env.DISCORD_OCTOBER_CHANNEL || "october-challenge",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
