@@ -24,7 +24,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-05": {
     n: 3,
-    text: `pick ONE goal for october. not ten. one thing you'd love to say you did by the 31st. write it here so we can hold you to it (lovingly).`,
+    text: `pick ONE goal for october. not ten. one thing you'd love to say you did by the 31st. write it here so we can hold you to it (lovingly). then come back tonight and hype one bestie's goal 💬`,
   },
 
   // --- say yes to small things ---
@@ -34,7 +34,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-07": {
     n: 5,
-    text: `romanticise a random wednesday. candle, nice dinner, playlist, whatever. send a pic of your night.`,
+    text: `romanticise a random wednesday. candle, nice dinner, playlist, whatever. send a pic of your night, then come back and react to someone else's 🕯️`,
   },
   "2026-10-08": {
     n: 6,
@@ -42,7 +42,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-09": {
     n: 7,
-    text: `tiny challenge: text a friend you've been meaning to text. bragging encouraged.`,
+    text: `tiny challenge: text a friend you've been meaning to text. bragging encouraged. bonus: reply to one bestie in here too 💬`,
   },
   "2026-10-10": {
     n: 8,
@@ -56,7 +56,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   // --- have one goal ---
   "2026-10-12": {
     n: 10,
-    text: `goal check-in: how's your october goal going? honest answers only. "haven't started" counts, today's the day.`,
+    text: `goal check-in: how's your october goal going? honest answers only. "haven't started" counts, today's the day. and cheer on one bestie below while you're here 📣`,
   },
   "2026-10-13": {
     n: 11,
@@ -68,7 +68,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-15": {
     n: 13,
-    text: `halfway through october 🎃 what's one thing you're glad you did so far this month?`,
+    text: `halfway through october 🎃 what's one thing you're glad you did so far this month? come back later and reply to one bestie's answer 💬`,
   },
   "2026-10-16": {
     n: 14,
@@ -76,7 +76,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-17": {
     n: 15,
-    text: `cosy food saturday 🍂 cook or order the thing you've been craving. pic or it didn't happen.`,
+    text: `cosy food saturday 🍂 cook or order the thing you've been craving. pic or it didn't happen. then come back and rate someone else's dinner 🍽️`,
   },
   "2026-10-18": {
     n: 16,
@@ -90,7 +90,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-20": {
     n: 18,
-    text: `tiny challenge: go for a walk with your phone on do not disturb. 15 minutes. how'd it feel?`,
+    text: `tiny challenge: go for a walk with your phone on do not disturb. 15 minutes. how'd it feel? when you're back, reply to one bestie 💬`,
   },
   "2026-10-21": {
     n: 19,
@@ -102,7 +102,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-23": {
     n: 21,
-    text: `friday night in or out? either way, what's the plan for making it feel good?`,
+    text: `friday night in or out? either way, what's the plan for making it feel good? and hype someone else's plan below 🥂`,
   },
   "2026-10-24": {
     n: 22,
@@ -116,7 +116,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   // --- make yourself proud ---
   "2026-10-26": {
     n: 24,
-    text: `last week of october 🎃 goal check: where are you? what's the one push to finish it?`,
+    text: `last week of october 🎃 goal check: where are you? what's the one push to finish it? then come back and cheer on one bestie 📣`,
   },
   "2026-10-27": {
     n: 25,
@@ -128,7 +128,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-29": {
     n: 27,
-    text: `tiny challenge: write down 3 things you're proud of from october. share one here.`,
+    text: `tiny challenge: write down 3 things you're proud of from october. share one here, then come back and hype someone else's 💬`,
   },
   "2026-10-30": {
     n: 28,
@@ -136,7 +136,7 @@ day 1: one word for how you want this october to feel. drop it below 🍂`,
   },
   "2026-10-31": {
     n: 29,
-    text: `happy halloween besties 🎃 ${TITLE} wraps today. send your favorite photo from this month, we're making a little recap 🍂`,
+    text: `happy halloween besties 🎃 ${TITLE} wraps today. send your favorite photo from this month, we're making a little recap 🍂 and leave some love on at least one other bestie's photo 🤍`,
   },
 };
 
@@ -144,10 +144,17 @@ export function dayForDate(dateStr) {
   return DAYS[dateStr] || null;
 }
 
-export function formatDay(day) {
+// "october 5th" from "2026-10-05".
+export function prettyDate(dateStr) {
+  const d = Number(dateStr.slice(-2));
+  const suffix = d % 10 === 1 && d !== 11 ? "st" : d % 10 === 2 && d !== 12 ? "nd" : d % 10 === 3 && d !== 13 ? "rd" : "th";
+  return `october ${d}${suffix}`;
+}
+
+export function formatDay(day, dateStr) {
   // Day 1 is the announcement and carries its own heading.
   if (day.n === 1) return day.text;
-  return `${TITLE} · day ${day.n} 🍂\n${day.text}`;
+  return `${TITLE} · ${prettyDate(dateStr)} 🍂\n${day.text}`;
 }
 
 function findChannel(guild, name) {
@@ -159,12 +166,13 @@ function findChannel(guild, name) {
 
 // Post today's challenge now. Returns the sent message, or null if none today.
 export async function postOctober(client, cfg) {
-  const day = dayForDate(tzNow(cfg.dailyTz).date);
+  const { date } = tzNow(cfg.dailyTz);
+  const day = dayForDate(date);
   if (!day) return null;
   const guild = client.guilds.cache.get(cfg.guildId);
   const channel = findChannel(guild, cfg.octoberChannelName);
   if (!channel) throw new Error(`channel matching "${cfg.octoberChannelName}" not found`);
-  const content = `${formatDay(day)}\n\n@everyone`;
+  const content = `${formatDay(day, date)}\n\n@everyone`;
   return channel.send({ content, allowedMentions: { parse: ["everyone"] } });
 }
 
