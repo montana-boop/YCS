@@ -138,6 +138,33 @@ we're easing into fall... what are you ready to leave behind this season?`,
 for the girls in the states: it's a day OFF, so no productivity guilt allowed.
 what are you doing with your long weekend... bbq, beach, a nap that goes way too long, or absolutely nothing?
 and one honest one: when's the last time you actually took a real break from work? be for real.`,
+
+  // ---- approved batch: 10/7 → 10/18 (format changes every day) ----
+  "2026-10-07": `camera roll wednesday 📸
+send the last photo in your camera roll. no explaining, no deleting first. we'll ask questions.`,
+  "2026-10-08": `this or that thursday 👀
+cozy night in or spontaneous night out. iced coffee or hot. text back fast or let it sit.
+answer all three, defend one.`,
+  "2026-10-09": `gif only friday 🎬
+describe your week in one gif. words not allowed.`,
+  "2026-10-10": `show me saturday 🤍
+your saturday view right now. bed, couch, coffee shop, car, wherever. pic 👀`,
+  "2026-10-11": `rate it sunday 🧺
+rate your week 1 to 10 and give us the one thing that made it that number.`,
+  "2026-10-12": `two truths and a lie monday 🍒
+post yours, then guess someone else's in the replies.`,
+  "2026-10-13": `unpopular opinion tuesday 🍝
+food edition. the take you'd get kicked out of a group chat for.`,
+  "2026-10-14": `voice memo wednesday 🎙️
+10-second voice note saying hi. we never hear each other's voices and it's weird. do it.`,
+  "2026-10-15": `dream dinner party thursday 🍽️
+3 guests, dead or alive, famous or not. who's coming and what are you cooking?`,
+  "2026-10-16": `screenshot friday 📱
+your most-used emoji (go to your keyboard, it's right there). what does it say about you?`,
+  "2026-10-17": `teleport saturday ✈️
+you get one free flight today, leaving in two hours. where are you going and what's the first thing you do?`,
+  "2026-10-18": `would you rather sunday 🤔
+know how every relationship ends before it starts, or never know but get an extra year of life? explain yourself.`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
