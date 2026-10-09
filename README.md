@@ -93,7 +93,7 @@ separately? Run `npm run deploy` and set `DISCORD_SKIP_AUTODEPLOY=1`.)
 |---|---|---|
 | `/ping` | anyone | Health check |
 | `/link` | anyone | Show the current invite link |
-| `/invite [channel] [max_age] [max_uses]` | Create Invite perm | Create/refresh the invite, store it, and post it |
+| `/invite [channel] [max_age] [max_uses]` | Manage Server perm | Create/refresh the invite behind the stable link (reply is private) |
 | `/blast <message> [title] [channel] [ping]` | Manage Server perm | Send an announcement (embed if `title`, ping `@everyone` if `ping:true`) |
 | `/discuss <topic> [message] [channel]` | Create Threads perm | Open a discussion thread (or a forum post) |
 

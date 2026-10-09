@@ -153,7 +153,10 @@ const invite = {
         .setDescription("Max uses (0 = unlimited)")
         .setMinValue(0)
     )
-    .setDefaultMemberPermissions(PermissionFlagsBits.CreateInstantInvite),
+    // Manage Server only: this overwrites the stored link that the public
+    // /discord redirect serves, so it must not be open to every member
+    // (Discord grants "Create Invite" to @everyone by default).
+    .setDefaultMemberPermissions(PermissionFlagsBits.ManageGuild),
   async execute(interaction) {
     const channel =
       interaction.options.getChannel("channel") || interaction.channel;
@@ -176,9 +179,10 @@ const invite = {
       createdAt: new Date().toISOString(),
       createdBy: interaction.user.tag,
     });
-    await interaction.reply(
-      `🔗 Invite ${maxAge === 0 ? "(never expires)" : `(expires in ${maxAge}s)`}: ${url}`
-    );
+    await interaction.reply({
+      content: `🔗 Invite ${maxAge === 0 ? "(never expires)" : `(expires in ${maxAge}s)`}: ${url}`,
+      flags: MessageFlags.Ephemeral,
+    });
   },
 };
 
