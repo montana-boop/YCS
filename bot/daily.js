@@ -165,6 +165,50 @@ your most-used emoji (go to your keyboard, it's right there). what does it say a
 you get one free flight today, leaving in two hours. where are you going and what's the first thing you do?`,
   "2026-10-18": `would you rather sunday 🤔
 know how every relationship ends before it starts, or never know but get an extra year of life? explain yourself.`,
+
+  // ---- approved batch: 10/28 → 11/17 (just fun, nothing about dating) ----
+  "2026-10-28": `hump day check-in 🐪
+describe your week so far in exactly 3 emojis. no words. we'll decode.`,
+  "2026-10-29": `hot take thursday 🍬
+halloween candy edition. the candy that's overrated and the one that deserves more respect.`,
+  "2026-10-30": `costume vote friday 🎃
+post your costume (or the one you wish you'd done). most reactions wins bragging rights.`,
+  "2026-10-31": `spooky or cozy 👻
+halloween night plan, pick one. horror movie or candy and a blanket. no in-between.`,
+  "2026-11-01": `one word sunday 🍂
+describe october in one word. no explaining.`,
+  "2026-11-02": `hidden talent monday ✨
+something you're weirdly good at that never comes up. the more random the better.`,
+  "2026-11-03": `hot take tuesday 🥞
+breakfast edition. the breakfast food you'd ban and the one you'd defend in court.`,
+  "2026-11-04": `core memory wednesday 📼
+a snack, show, or game from being a kid that still lives in your brain rent free.`,
+  "2026-11-05": `last song played thursday 🎧
+screenshot it, no shuffling first. we'll judge gently.`,
+  "2026-11-06": `million dollar friday 💸
+you get $1 million but you have to spend it in 24 hours and can't invest it. go.`,
+  "2026-11-07": `snack rating saturday 🍿
+your current favorite snack, rated 1 to 10, and where you get it.`,
+  "2026-11-08": `irrational fear sunday 😳
+the thing that scares you that makes absolutely no sense. mine's in the replies.`,
+  "2026-11-09": `wallpaper monday 📱
+screenshot your lock screen. it says more about you than you think.`,
+  "2026-11-10": `worst advice tuesday 🙃
+the worst advice you've ever gotten, and whether you took it.`,
+  "2026-11-11": `would you rather wednesday ⏰
+always be 10 minutes late, or always be 20 minutes early. explain.`,
+  "2026-11-12": `hype a bestie thursday 📣
+reply to someone else's answer from any day this week and gas them up.`,
+  "2026-11-13": `useless superpower friday 🦸‍♀️
+one superpower, but it has to be useless. mine's folding a fitted sheet perfectly.`,
+  "2026-11-14": `morning routine saturday ☀️
+first three things you do when you wake up. honest answers, no "meditate."`,
+  "2026-11-15": `currently obsessed sunday 🔁
+one thing you can't stop thinking about this week. song, show, recipe, anything.`,
+  "2026-11-16": `unpopular opinion monday 🎄
+holiday edition. the thing about the holidays you secretly don't like.`,
+  "2026-11-17": `thankful but petty tuesday 🦃
+one thing you're thankful for this month, and one tiny thing you're grateful is over.`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
