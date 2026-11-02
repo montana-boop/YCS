@@ -16,6 +16,7 @@ import { startCoworkingReminder, startEventScheduler } from "./events.js";
 import { startBirthdayScheduler } from "./birthday.js";
 import { startJournalScheduler } from "./journal.js";
 import { startOctoberScheduler } from "./october.js";
+import { startNovemberScheduler } from "./november.js";
 import { DATA_DIR } from "../src/store.js";
 
 // A stray error in a timer or a request should be logged, not fatal: a crash
@@ -86,6 +87,9 @@ client.once(Events.ClientReady, async (c) => {
 
   // Cosy Girl October daily challenge 🎃 (Oct 3–31)
   startOctoberScheduler(client, cfg);
+
+  // November challenge 🍂 (Nov 2–30): gratitude, recenter, together.
+  startNovemberScheduler(client, cfg);
 });
 
 // Slash command + role-menu dispatch.

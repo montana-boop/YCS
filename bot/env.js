@@ -46,6 +46,10 @@ export function botConfig() {
     octoberKickoffTime: process.env.DISCORD_OCTOBER_KICKOFF_TIME || "08:00",
     octoberTime: process.env.DISCORD_OCTOBER_TIME || "08:00",
     octoberChannelName: process.env.DISCORD_OCTOBER_CHANNEL || "october-challenge",
+    // November challenge: daily post time + channel (matched by name). Day 1
+    // posts as soon as the bot is up on Nov 2.
+    novemberTime: process.env.DISCORD_NOVEMBER_TIME || "08:00",
+    novemberChannelName: process.env.DISCORD_NOVEMBER_CHANNEL || "november",
     // Prepended... appended to each daily post so members get pinged. "" disables.
     dailyMention:
       process.env.DISCORD_DAILY_MENTION !== undefined
