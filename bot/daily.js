@@ -209,6 +209,58 @@ one thing you can't stop thinking about this week. song, show, recipe, anything.
 holiday edition. the thing about the holidays you secretly don't like.`,
   "2026-11-17": `thankful but petty tuesday 🦃
 one thing you're thankful for this month, and one tiny thing you're grateful is over.`,
+
+  // ---- approved batch: 11/26 → 12/20 (thanksgiving + into december, just fun) ----
+  "2026-11-26": `thanksgiving gratitude 🦃
+one thing you're grateful for this year that you'd never say in a toast. the petty, specific, real one.`,
+  "2026-11-27": `best bite friday 🍽️
+best thing you ate yesterday. rate it, name the chef.`,
+  "2026-11-28": `recovery mode saturday 🛋️
+post-holiday recharge plan. couch, walk, nap, or "i'm still at my family's house help."`,
+  "2026-11-29": `one word sunday 🍂
+describe november in one word. no explaining.`,
+  "2026-11-30": `december bucket list monday 🎄
+one thing you want to do this month that has nothing to do with gifts.`,
+  "2026-12-01": `hot take tuesday 🎶
+holiday music edition. the song that's overrated and the one that deserves more respect.`,
+  "2026-12-02": `screenshot wednesday 🌨️
+your weather app right now. where are you and how bad is it.`,
+  "2026-12-03": `tiny luxury thursday ✨
+the small thing you buy yourself in december, no justification needed.`,
+  "2026-12-04": `show me friday 🕯️
+your coziest spot today. pic.`,
+  "2026-12-05": `would you rather saturday ❄️
+snow for all of december or 70 degrees for all of december. defend it.`,
+  "2026-12-06": `first concert sunday 🎤
+the first concert you ever went to. no shame, we all have one.`,
+  "2026-12-07": `gift you still think about monday 🎁
+best gift you've ever received, big or tiny.`,
+  "2026-12-08": `emoji check-in tuesday 🫶
+your december so far in 3 emojis. we'll decode.`,
+  "2026-12-09": `this or that wednesday 🍪
+cookies or pie. lights or candles. early gifts or christmas morning. answer all three.`,
+  "2026-12-10": `hype a bestie thursday 📣
+reply to someone's answer from this week and gas them up.`,
+  "2026-12-11": `playlist friday 🎧
+one song for the group december playlist. reply to someone's with yours.`,
+  "2026-12-12": `irrational holiday opinion saturday 🙃
+the thing you do every december that makes no sense and you'll never stop.`,
+  "2026-12-13": `2026 in a photo sunday 📸
+one picture from this year that sums it up. no explanation required.`,
+  "2026-12-14": `worst purchase monday 💸
+the thing you bought this year that you regret the most. we've all got one.`,
+  "2026-12-15": `last song played tuesday 🎵
+screenshot it, no shuffling first.`,
+  "2026-12-16": `unpopular opinion wednesday 🎀
+gift-giving edition. the holiday tradition you'd cancel if you were in charge.`,
+  "2026-12-17": `brag thursday 👏
+one thing you did this year that nobody clapped for. we're clapping now.`,
+  "2026-12-18": `teleport friday ✈️
+one free flight, leaving tonight, for the holidays. where?`,
+  "2026-12-19": `would you rather saturday 🎁
+know what every gift is before you open it, or get one fewer gift but every one's a surprise.`,
+  "2026-12-20": `currently obsessed sunday 🔁
+one thing you can't stop thinking about this week. song, show, recipe, anything.`,
 };
 
 // Current weekday / time / date in a timezone (DST-safe via Intl).
